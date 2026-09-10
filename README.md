@@ -1,41 +1,53 @@
 # CramptoGame
 
-Lecture des cahiers des charges : 
+Projet réalisé dans le cadre du T3, en reprise du sujet **PET-H**.
 
-Objectif pédagogique proposé : 
+Dépôt de référence : [sonic-team](https://git.unistra.fr/erdal-salmane-boudraa-roche/sonic-team)
 
-PET-H (https://git.unistra.fr/erdal-salmane-boudraa-roche/sonic-team )
+## Objectif pédagogique
+
 La santé mentale dépend de nombreux facteurs.
-Même si le stress et l'anxiété est un problème commun, le milieu et les déterminants sociaux (les revenus, mode de cohabitation, sexe/genre ou encore le statut migratoire (régularisé, irrégularisé, réfugié politique, etc.)) influencent grandement la santé mentale et la possibilité de trouble de celle-ci.
-BUT DU JEU : Garder un certain équilibre entre argent, stress et bon résultats dans les études.
-FIN DU JEU : passer l’année, SI ON A LE TEMPS : mode infini.
-DÉROULEMENT : Le joueur fait des choix (surement 2 a 3 par semaines) durant la semaine et manage son temps le week-end (peux aussi acheter des choses le weekend), qui impacteront sur ses niveaux d’argent, de stress et de résultats scolaires pendant la semaine. Après une semaine, le joueur voit son bilan et doit ajuster ses choix pour que ses jauges restent équilibrés.
-Les trois branches de stats se diviseront en plein de sous stats.
-Jeu sur Godot en GDscript
 
+Même si le stress et l'anxiété sont des problèmes communs, le milieu et les déterminants sociaux — les revenus, le mode de cohabitation, le sexe/genre, ou encore le statut migratoire (régularisé, irrégularisé, réfugié politique, etc.) — influencent grandement la santé mentale et la possibilité de trouble de celle-ci.
 
+## Concept du jeu
 
+**But du jeu :** garder un certain équilibre entre argent, stress et bons résultats dans les études.
 
+**Fin du jeu :** passer l'année. *Si le temps le permet : mode infini.*
 
+**Déroulement :**
+- Le joueur fait des choix (2 à 3 par semaine) durant la semaine.
+- Il gère son temps le week-end (peut aussi effectuer des achats à ce moment-là).
+- Ces choix impactent ses niveaux d'argent, de stress et de résultats scolaires.
+- À la fin de chaque semaine, le joueur consulte son bilan et doit ajuster ses choix pour maintenir ses jauges à l'équilibre.
 
+Les trois branches de statistiques se divisent chacune en plusieurs sous-statistiques (voir ci-dessous).
 
-## Stats : 
-### Académique 
-Scientifique
-Litératique
-Méthodologie
-Assiduité
-### Bien-être 
-Sommeil
-Vie Sociale
-Loisirs
-Stabilité Émotionnelle
-### Moyen financier (nb argent et argents gagné tout les mois moins les dépenses récurrente)
-job de côté
-papa maman
-aide de l’état/boursier
+**Moteur de jeu :** Godot, en GDScript.
 
-## Objet :
-Moyen de transport
-Moyen de révision
-Divertissement
+## Statistiques
+
+### 🎓 Académique
+- Scientifique
+- Littéraire
+- Méthodologie
+- Assiduité
+
+### 🧘 Bien-être
+- Sommeil
+- Vie sociale
+- Loisirs
+- Stabilité émotionnelle
+
+### 💰 Moyens financiers
+*(argent disponible + revenus mensuels − dépenses récurrentes)*
+- Job à côté
+- Aide des parents
+- Aide de l'état / bourse
+
+## Objets
+
+- Moyen de transport
+- Moyen de révision
+- Divertissement
