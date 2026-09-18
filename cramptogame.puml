@@ -1,0 +1,113 @@
+@startuml CramptoGame
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+' Package contenant les éléments natifs de Godot
+package godot {
+    class Resource
+    class Node2D
+    class Texture2D
+}
+
+enum StatType <<enumerate>> {
+    SCIENTIFIC
+    LITERATURE
+    METHODOLOGY
+    ATTENDANCE
+    SLEEP
+    SOCIAL_LIFE
+    LEISURE
+}
+
+enum GamePhase <<enumerate>> {
+    WEEKDAY
+    WEEKEND
+}
+
+enum WeekendAction <<enumerate>> {
+    RELAX
+    STUDY
+    WORK
+}
+
+package item {
+    class Item extends godot.Resource {
+        - _price : Real
+        - _monthly_price : Real
+        - _name : String
+    }
+
+    class StatModifier extends godot.Resource {
+        - _flat_bonus : Integer
+        - _multiplier_bonus : Real
+    }
+
+    Item "1" *--> "0..7\n- _stat_modifiers" StatModifier : contains >
+    Item "1" --> "1\n- _texture" godot.Texture2D : uses >
+    StatModifier "*" --> "1\n- _stat_type" StatType : modifies >
+}
+
+package player {
+    class Player {
+        - _name : String
+        - _social_status : String
+    }
+    
+    class PlayerStat {
+        - _current_value : Integer
+    }
+    
+    Player "1" *--> "*\n- _stats" PlayerStat : tracks >
+    PlayerStat "*" --> "1\n- _type" StatType : represents >
+    Player "1" *--> "*\n- _inventory" item.Item : owns >
+}
+
+package core_game {
+    class GameManager extends godot.Node2D {
+        - _current_week : Integer
+        - _max_weeks : Integer
+        - _weekend_time_pool : Integer
+        - _current_money : Integer
+        
+        + start_week()
+        + trigger_event()
+        + process_choice(choice_index : Integer)
+        + start_weekend()
+        + allocate_time(action : String, hours : Integer)
+        + buy_item(item_name : String)
+        + end_week()
+    }
+    
+    ' La carte d'événement (ex: "Un ami te propose de sortir")
+    class EventCard extends godot.Resource {
+        - _title : String
+        - _description : String
+        - _image : godot.Texture2D
+    }
+
+    ' Les choix spécifique (ex: "Accepter" ou "Refuser")
+    class EventChoice extends godot.Resource {
+        - _description : String
+        - _money_impact : Integer
+    }
+    
+    ' Le GameManager gère le joueur et la pioche de cartes
+    GameManager "1" *--> "1\n- _player" player.Player : manages >
+    GameManager "1" *--> "*\n- _event_cards" EventCard : handles >
+    GameManager "1" --> "1\n- _current_phase" GamePhase : is in >
+    
+    ' Une carte possède 2 choix ou plus (selon le type Reigns)
+    EventCard "1" *--> "2..*\n- _choices" EventChoice : proposes >
+    
+    ' Un choix modifie potentiellement plusieurs stats (ex: +Social, -Sommeil)
+    EventChoice "1" *--> "*\n- _stat_modifiers" item.StatModifier : applies >
+    
+    ' Un choix peut nécessiter un item spécifique pour être cliquable (0..1 car optionnel)
+    EventChoice "*" --> "0..1\n- _required_item" item.Item : requires >
+}
+
+GameManager ..> WeekendAction : <<use>>
+
+@enduml
