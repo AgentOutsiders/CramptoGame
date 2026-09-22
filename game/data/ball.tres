@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dkuiy6vi01u5w"]
+
+[ext_resource type="Script" uid="uid://cnthevqoqq2s6" path="res://models/stat_modifier.gd" id="1_j1x8e"]
+[ext_resource type="Texture2D" uid="uid://bifpy5p6fgkk7" path="res://assets/test/ball_icon.png" id="2_uwhqc"]
+[ext_resource type="Script" uid="uid://cdjt27bxeesjj" path="res://models/item.gd" id="2_y1go2"]
+
+[sub_resource type="Resource" id="Resource_jaqew"]
+script = ExtResource("1_j1x8e")
+_stat_type = 6
+_flat_bonus = 5
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[resource]
+script = ExtResource("2_y1go2")
+_name = "Ballon"
+_price = 10.0
+_texture = ExtResource("2_uwhqc")
+_stat_modifiers = Array[ExtResource("1_j1x8e")]([SubResource("Resource_jaqew")])
+_description = "Un ballon."
+metadata/_custom_type_script = "uid://cdjt27bxeesjj"

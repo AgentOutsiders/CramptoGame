@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://d2rdojdvbwva1"]
+
+[ext_resource type="Script" uid="uid://cnthevqoqq2s6" path="res://models/stat_modifier.gd" id="1_u7txe"]
+[ext_resource type="Script" uid="uid://cdjt27bxeesjj" path="res://models/item.gd" id="2_jaqew"]
+[ext_resource type="Texture2D" uid="uid://dr75ji2f3tjn7" path="res://assets/test/laptop_icon.png" id="2_vgh4f"]
+
+[sub_resource type="Resource" id="Resource_srr8h"]
+script = ExtResource("1_u7txe")
+_flat_bonus = 2
+_multiplier_bonus = 2.0
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[sub_resource type="Resource" id="Resource_3dnf7"]
+script = ExtResource("1_u7txe")
+_stat_type = 1
+_flat_bonus = 2
+_multiplier_bonus = 2.0
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[sub_resource type="Resource" id="Resource_hv2qw"]
+script = ExtResource("1_u7txe")
+_stat_type = 2
+_flat_bonus = 2
+_multiplier_bonus = 2.0
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[resource]
+script = ExtResource("2_jaqew")
+_name = "Ordinateur"
+_price = 500.0
+_texture = ExtResource("2_vgh4f")
+_stat_modifiers = Array[ExtResource("1_u7txe")]([SubResource("Resource_srr8h"), SubResource("Resource_3dnf7"), SubResource("Resource_hv2qw")])
+_description = "Un ordinateur portable."
+metadata/_custom_type_script = "uid://cdjt27bxeesjj"

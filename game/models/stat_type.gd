@@ -1,0 +1,11 @@
+class_name StatType
+
+enum Type {
+	SCIENTIFIC,
+	LITERATURE,
+	METHODOLOGY,
+	ATTENDANCE,
+	SLEEP,
+	SOCIAL_LIFE,
+	LEISURE
+}

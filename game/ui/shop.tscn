@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bacgr6bo7nsuo"]
+
+[ext_resource type="Script" uid="uid://ybqixirhc300" path="res://ui/shop.gd" id="1_foe6g"]
+[ext_resource type="Script" uid="uid://cdjt27bxeesjj" path="res://models/item.gd" id="2_1slnd"]
+[ext_resource type="Resource" uid="uid://by0k1awrhx6oe" path="res://data/car.tres" id="3_e4u7y"]
+[ext_resource type="Resource" uid="uid://d2rdojdvbwva1" path="res://data/laptop.tres" id="4_e4u7y"]
+[ext_resource type="Resource" uid="uid://dkuiy6vi01u5w" path="res://data/ball.tres" id="5_t603m"]
+[ext_resource type="PackedScene" uid="uid://bjvs5qyemguwy" path="res://ui/purchase_confirmation_popup.tscn" id="6_67uj7"]
+
+[node name="Shop" type="Control" unique_id=1128433986]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_foe6g")
+_available_items = Array[ExtResource("2_1slnd")]([ExtResource("3_e4u7y"), ExtResource("4_e4u7y"), ExtResource("5_t603m")])
+
+[node name="ItemContainer" type="HBoxContainer" parent="." unique_id=1812261318]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="PurchaseConfirmationPopup" parent="." unique_id=1508004885 instance=ExtResource("6_67uj7")]

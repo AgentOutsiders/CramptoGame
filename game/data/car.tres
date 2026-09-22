@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://by0k1awrhx6oe"]
+
+[ext_resource type="Script" uid="uid://cnthevqoqq2s6" path="res://models/stat_modifier.gd" id="1_phg4l"]
+[ext_resource type="Texture2D" uid="uid://do05umlhe5yyj" path="res://assets/test/car_icon.png" id="2_bcl8f"]
+[ext_resource type="Script" uid="uid://cdjt27bxeesjj" path="res://models/item.gd" id="2_bjos7"]
+
+[sub_resource type="Resource" id="Resource_bjos7"]
+script = ExtResource("1_phg4l")
+_stat_type = 4
+_flat_bonus = 2
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[sub_resource type="Resource" id="Resource_bcl8f"]
+script = ExtResource("1_phg4l")
+_stat_type = 5
+_flat_bonus = 2
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[resource]
+script = ExtResource("2_bjos7")
+_name = "Voiture"
+_price = 34600.0
+_texture = ExtResource("2_bcl8f")
+_stat_modifiers = Array[ExtResource("1_phg4l")]([SubResource("Resource_bjos7"), SubResource("Resource_bcl8f")])
+_description = "Une voiture neuve."
+metadata/_custom_type_script = "uid://cdjt27bxeesjj"
