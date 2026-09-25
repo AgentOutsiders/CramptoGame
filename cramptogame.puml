@@ -84,7 +84,6 @@ package core_game {
     class EventCard extends godot.Resource {
         - _title : String
         - _description : String
-        - _image : godot.Texture2D
     }
 
     ' Les choix spécifique (ex: "Accepter" ou "Refuser")
@@ -100,6 +99,7 @@ package core_game {
     
     ' Une carte possède 2 choix ou plus (selon le type Reigns)
     EventCard "1" *--> "2..*\n- _choices" EventChoice : proposes >
+    EventCard "1" --> "1\n- _image" godot.Texture2D : uses >
     
     ' Un choix modifie potentiellement plusieurs stats (ex: +Social, -Sommeil)
     EventChoice "1" *--> "*\n- _stat_modifiers" item.StatModifier : applies >
