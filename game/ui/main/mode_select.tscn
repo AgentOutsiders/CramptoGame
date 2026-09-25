@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dbkuaycd8yg83"]
+
+[ext_resource type="Script" uid="uid://c8jjtyqmugiep" path="res://scenes/menus/mode_select.gd" id="1_dmmho"]
+[ext_resource type="Texture2D" uid="uid://csxukekla8wgo" path="res://assets/object/object1.png" id="2_8nwlo"]
+[ext_resource type="Texture2D" uid="uid://ckedt7nago4li" path="res://assets/landscape/landscape1.jpg" id="2_dmmho"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="3_cxk78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8nwlo"]
+content_margin_top = 18.0
+content_margin_bottom = 18.0
+bg_color = Color(0, 0, 0.011764706, 0.5137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q8i8"]
+content_margin_top = 18.0
+content_margin_bottom = 18.0
+bg_color = Color(0, 0, 0.011764706, 0.5137255)
+
+[node name="ModeControl" type="Control" unique_id=1528792517]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmmho")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1188725733]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dmmho")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=684598452]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1814572416]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="FinitePanel" type="PanelContainer" parent="CenterContainer/HBoxContainer" unique_id=1234498176]
+custom_minimum_size = Vector2(500, 680)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/FinitePanel" unique_id=1416985352]
+layout_mode = 2
+
+[node name="FiniteImage" type="TextureRect" parent="CenterContainer/HBoxContainer/FinitePanel/VBoxContainer" unique_id=1568790383]
+layout_mode = 2
+texture = ExtResource("2_8nwlo")
+expand_mode = 5
+
+[node name="FiniteLabelMargin" type="MarginContainer" parent="CenterContainer/HBoxContainer/FinitePanel/VBoxContainer" unique_id=1466855566]
+layout_mode = 2
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="FiniteLabel" type="Label" parent="CenterContainer/HBoxContainer/FinitePanel/VBoxContainer/FiniteLabelMargin" unique_id=967814865]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 28
+text = "Mode fini"
+
+[node name="FiniteButton" type="Button" parent="CenterContainer/HBoxContainer/FinitePanel/VBoxContainer" unique_id=1826495883]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_8nwlo")
+text = "Jouer"
+
+[node name="InfinitePanel" type="PanelContainer" parent="CenterContainer/HBoxContainer" unique_id=599295634]
+custom_minimum_size = Vector2(500, 680)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/InfinitePanel" unique_id=240267382]
+layout_mode = 2
+
+[node name="InfiniteImage" type="TextureRect" parent="CenterContainer/HBoxContainer/InfinitePanel/VBoxContainer" unique_id=817752923]
+layout_mode = 2
+texture = ExtResource("2_8nwlo")
+expand_mode = 5
+
+[node name="InfiniteLabelMargin" type="MarginContainer" parent="CenterContainer/HBoxContainer/InfinitePanel/VBoxContainer" unique_id=1896228925]
+layout_mode = 2
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="InfiniteLabel" type="Label" parent="CenterContainer/HBoxContainer/InfinitePanel/VBoxContainer/InfiniteLabelMargin" unique_id=589879503]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 28
+text = "Mode infini"
+
+[node name="InfiniteButton" type="Button" parent="CenterContainer/HBoxContainer/InfinitePanel/VBoxContainer" unique_id=855972660]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_5q8i8")
+text = "Jouer"

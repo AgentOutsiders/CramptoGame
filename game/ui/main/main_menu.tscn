@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bui2h6utje834"]
+
+[ext_resource type="Script" uid="uid://chnm4eorgdjl2" path="res://scripts/menus/main_menu.gd" id="1_ovrgc"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="1_xqga4"]
+[ext_resource type="Texture2D" uid="uid://ckedt7nago4li" path="res://assets/landscape/landscape1.jpg" id="2_2o76q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obvip"]
+content_margin_left = 0.0
+content_margin_top = 26.0
+content_margin_right = 0.0
+content_margin_bottom = 26.0
+bg_color = Color(0, 0, 0.011764706, 0.5137255)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2o76q"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50h1w"]
+content_margin_left = 0.0
+content_margin_top = 20.0
+content_margin_right = 0.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0.011764706, 0.5137255)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euy4r"]
+content_margin_left = 0.0
+content_margin_top = 20.0
+content_margin_right = 0.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0.011764706, 0.5137255)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bre17"]
+content_margin_left = 0.0
+content_margin_top = 20.0
+content_margin_right = 0.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0.011764706, 0.5137255)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MainMenu" type="Control" unique_id=374703924]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ovrgc")
+
+[node name="Background" type="TextureRect" parent="." unique_id=105961706]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2o76q")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=735398532]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=556765120]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=894640704]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_obvip")
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer" unique_id=368125646]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxFlat_2o76q")
+text = "CramptoGame"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1530636020]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1774857956]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("StyleBoxFlat_50h1w")
+text = "Jouer"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=633689442]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("StyleBoxFlat_euy4r")
+text = "Paramètres"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=298696581]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("StyleBoxFlat_bre17")
+text = "Quitter"
