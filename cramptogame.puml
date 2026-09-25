@@ -81,31 +81,31 @@ package core_game {
     }
     
     ' La carte d'événement (ex: "Un ami te propose de sortir")
-    class EventCard extends godot.Resource {
+    class Event extends godot.Resource {
         - _title : String
         - _description : String
     }
 
     ' Les choix spécifique (ex: "Accepter" ou "Refuser")
-    class EventChoice extends godot.Resource {
+    class Choice extends godot.Resource {
         - _description : String
         - _money_impact : Integer
     }
     
     ' Le GameManager gère le joueur et la pioche de cartes
     GameManager "1" *--> "1\n- _player" player.Player : manages >
-    GameManager "1" *--> "*\n- _event_cards" EventCard : handles >
+    GameManager "1" *--> "*\n- _event_cards" Event : handles >
     GameManager "1" --> "1\n- _current_phase" GamePhase : is in >
     
     ' Une carte possède 2 choix ou plus (selon le type Reigns)
-    EventCard "1" *--> "2..*\n- _choices" EventChoice : proposes >
-    EventCard "1" --> "1\n- _image" godot.Texture2D : uses >
+    Event "1" *--> "2..*\n- _choices" Choice : proposes >
+    Event "1" --> "1\n- _image" godot.Texture2D : uses >
     
     ' Un choix modifie potentiellement plusieurs stats (ex: +Social, -Sommeil)
-    EventChoice "1" *--> "*\n- _stat_modifiers" item.StatModifier : applies >
+    Choice "1" *--> "*\n- _stats_modifiers" item.StatModifier : applies >
     
     ' Un choix peut nécessiter un item spécifique pour être cliquable (0..1 car optionnel)
-    EventChoice "*" --> "0..1\n- _required_item" item.Item : requires >
+    Choice "*" --> "0..1\n- _required_item" item.Item : requires >
 }
 
 GameManager ..> WeekendAction : <<use>>
