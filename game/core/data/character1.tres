@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://rb7aqn1bdnyq"]
+
+[ext_resource type="Texture2D" uid="uid://btxwow6vgyldp" path="res://assets/character/character1.png" id="1_6i5oh"]
+[ext_resource type="Script" uid="uid://d1eoo223wl4qx" path="res://core/data/character_data.gd" id="1_33tge"]
+
+[resource]
+script = ExtResource("1_33tge")
+character_name = "ChevalierAlexis"
+portrait = ExtResource("1_6i5oh")
+metadata/_custom_type_script = "uid://d1eoo223wl4qx"

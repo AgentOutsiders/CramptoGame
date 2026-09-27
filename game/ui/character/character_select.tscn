@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://bfcefuuvitwoa"]
+
+[ext_resource type="Texture2D" uid="uid://ckedt7nago4li" path="res://assets/landscape/landscape1.jpg" id="1_mxgd2"]
+[ext_resource type="Script" uid="uid://dvbg3brv3cr8a" path="res://ui/character/character_select.gd" id="1_wvm3f"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="3_6hupj"]
+
+[node name="CharacterSelect" type="Control" unique_id=316772100]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wvm3f")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1791231909]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mxgd2")
+
+[node name="MainContainer" type="VBoxContainer" parent="." unique_id=1915276317]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopSpacer" type="Control" parent="MainContainer" unique_id=292918157]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="TopSection" type="HBoxContainer" parent="MainContainer" unique_id=951573727]
+layout_mode = 2
+alignment = 1
+
+[node name="StatsPanel" type="PanelContainer" parent="MainContainer/TopSection" unique_id=1918506381]
+layout_mode = 2
+
+[node name="StatsPanelMargin" type="MarginContainer" parent="MainContainer/TopSection/StatsPanel" unique_id=324492813]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 20
+
+[node name="StatsContainer" type="VBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin" unique_id=2074126291]
+layout_mode = 2
+
+[node name="StatsMargin" type="MarginContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=1886218330]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="TitleMargin" type="MarginContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/StatsMargin" unique_id=2127156533]
+layout_mode = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 54
+theme_override_constants/margin_right = 110
+theme_override_constants/margin_bottom = 54
+
+[node name="StatsTitle" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/StatsMargin/TitleMargin" unique_id=1023394700]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 40
+text = "Statistiques"
+
+[node name="ScientificRow" type="HBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=1832233808]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="ScientificLabel" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/ScientificRow" unique_id=1490838894]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 30
+text = "Scientifique"
+
+[node name="ScientificBar" type="ProgressBar" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/ScientificRow" unique_id=691181613]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="LiteratureRow" type="HBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=1991344366]
+layout_mode = 2
+theme_override_constants/separation = 49
+
+[node name="LiteratureLabel" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/LiteratureRow" unique_id=1572969567]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 30
+text = "Scientifique"
+
+[node name="LiteratureBar" type="ProgressBar" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/LiteratureRow" unique_id=742624296]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="MethodologyRow" type="HBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=334714484]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="MethodologyLabel" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/MethodologyRow" unique_id=1991441691]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 30
+text = "Scientifique"
+
+[node name="MethodologyBar" type="ProgressBar" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/MethodologyRow" unique_id=159321971]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="AttendanceRow" type="HBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=315060545]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="AttendanceLabel" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/AttendanceRow" unique_id=448265866]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 30
+text = "Scientifique"
+
+[node name="AttendanceBar" type="ProgressBar" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/AttendanceRow" unique_id=1438765315]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="SleepRow" type="HBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=1118658164]
+layout_mode = 2
+theme_override_constants/separation = 134
+
+[node name="SleepLabel" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/SleepRow" unique_id=2139804661]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 30
+text = "Scientifique"
+
+[node name="SleepBar" type="ProgressBar" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/SleepRow" unique_id=2007786139]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="SocialLifeRow" type="HBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=878374505]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="SocialLifeLabel" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/SocialLifeRow" unique_id=198233098]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 30
+text = "Scientifique"
+
+[node name="SocialLifeBar" type="ProgressBar" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/SocialLifeRow" unique_id=1719850852]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="LeisureRow" type="HBoxContainer" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer" unique_id=1558808313]
+layout_mode = 2
+theme_override_constants/separation = 148
+
+[node name="LeisureLabel" type="Label" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/LeisureRow" unique_id=1421469266]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 30
+text = "Scientifique"
+
+[node name="LeisureBar" type="ProgressBar" parent="MainContainer/TopSection/StatsPanel/StatsPanelMargin/StatsContainer/LeisureRow" unique_id=638625257]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="PreviewPanel" type="PanelContainer" parent="MainContainer/TopSection" unique_id=1158849020]
+layout_mode = 2
+
+[node name="PreviewMargin" type="MarginContainer" parent="MainContainer/TopSection/PreviewPanel" unique_id=785046767]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 54
+
+[node name="PreviewContainer" type="VBoxContainer" parent="MainContainer/TopSection/PreviewPanel/PreviewMargin" unique_id=1737524749]
+layout_mode = 2
+
+[node name="CharacterPreview" type="TextureRect" parent="MainContainer/TopSection/PreviewPanel/PreviewMargin/PreviewContainer" unique_id=1481262735]
+unique_name_in_owner = true
+custom_maximum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CharacterNameLabel" type="Label" parent="MainContainer/TopSection/PreviewPanel/PreviewMargin/PreviewContainer" unique_id=180995144]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6hupj")
+theme_override_font_sizes/font_size = 40
+
+[node name="ThumbnailWrapper" type="CenterContainer" parent="MainContainer" unique_id=425660704]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ThumbnailRow" type="HBoxContainer" parent="MainContainer/ThumbnailWrapper" unique_id=167411052]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+alignment = 1

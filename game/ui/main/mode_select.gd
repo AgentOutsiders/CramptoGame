@@ -9,8 +9,8 @@ func _ready() -> void:
 
 func _on_finite_pressed() -> void:
 	GameManager.selected_mode = GameManager.GameMode.STORY
-	get_tree().change_scene_to_file("res://scenes/menus/character_select.tscn")
+	get_tree().change_scene_to_file("res://ui/character/character_select.tscn")
 
 func _on_infinite_pressed() -> void:
 	GameManager.selected_mode = GameManager.GameMode.INFINITE
-	get_tree().change_scene_to_file("res://scenes/menus/character_select.tscn")
+	get_tree().change_scene_to_file("res://ui/character/character_select.tscn")
