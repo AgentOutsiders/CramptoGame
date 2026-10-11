@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cfavor3653gsf" path="res://ui/choiceUI.gd" id="1_lpra6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpra6"]
-bg_color = Color(0, 0.6039216, 1, 1)
+bg_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10

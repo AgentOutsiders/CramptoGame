@@ -8,6 +8,50 @@ bg_color = Color(0.32156864, 0.3254902, 0.3254902, 0.1882353)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65w1q"]
 bg_color = Color(0.32156864, 0.3254902, 0.3254902, 0.1882353)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6sq7"]
+bg_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pth3o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq4b4"]
+bg_color = Color(0.25565878, 0.2556588, 0.2556587, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnr7b"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb852"]
+bg_color = Color(0.5686275, 1, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [node name="Event" type="Control" unique_id=411790498]
 layout_mode = 3
 anchors_preset = 0
@@ -73,3 +117,210 @@ theme_override_constants/margin_bottom = 40
 
 [node name="ChoiceHBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=309380133]
 layout_mode = 2
+
+[node name="FullInfoChoiceColorRect" type="ColorRect" parent="." unique_id=1043577603]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.40392157)
+
+[node name="MarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect" unique_id=438480359]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer" unique_id=1035119213]
+layout_mode = 2
+
+[node name="FullInfoChoicePanelContainer" type="PanelContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer" unique_id=517102095]
+custom_minimum_size = Vector2(1600, 750)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a6sq7")
+
+[node name="MarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer" unique_id=127883051]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer" unique_id=1439750916]
+layout_mode = 2
+
+[node name="TopHBoxContainer" type="HBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer" unique_id=1149479063]
+custom_minimum_size = Vector2(0, 328)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="LeftMarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer" unique_id=182482962]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+
+[node name="LeftVBoxContainer" type="VBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/LeftMarginContainer" unique_id=1757830165]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="FullInfoChoiceLabel" type="Label" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/LeftMarginContainer/LeftVBoxContainer" unique_id=718082891]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "NAME"
+horizontal_alignment = 1
+
+[node name="FullInfoChoiceTextureRect" type="TextureRect" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/LeftMarginContainer/LeftVBoxContainer" unique_id=812483927]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_pth3o")
+
+[node name="RightMarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer" unique_id=1442102316]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 30
+
+[node name="PanelContainer" type="PanelContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/RightMarginContainer" unique_id=2101346882]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wq4b4")
+
+[node name="RightVBoxContainer" type="VBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/RightMarginContainer/PanelContainer" unique_id=1021972173]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DescriptionLabel" type="Label" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/RightMarginContainer/PanelContainer/RightVBoxContainer" unique_id=343302503]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Description"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/RightMarginContainer/PanelContainer/RightVBoxContainer" unique_id=1160150046]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="DescriptionRichTextLabel" type="RichTextLabel" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer/RightMarginContainer/PanelContainer/RightVBoxContainer/MarginContainer" unique_id=931340392]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+text = "blablablablabla
+blablablablabla
+blablablablabla
+blablablablabla"
+
+[node name="BottomHBoxContainer" type="HBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer" unique_id=1436855780]
+custom_minimum_size = Vector2(0, 328)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="RightMarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer" unique_id=1158735540]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 15
+
+[node name="PanelContainer" type="PanelContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer" unique_id=175303985]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wq4b4")
+
+[node name="RightVBoxContainer" type="VBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer/PanelContainer" unique_id=1793665184]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="StatLabel" type="Label" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer/PanelContainer/RightVBoxContainer" unique_id=1173971772]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Stat"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer/PanelContainer/RightVBoxContainer" unique_id=682077141]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="StatRichTextLabel" type="RichTextLabel" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer/PanelContainer/RightVBoxContainer/MarginContainer" unique_id=1258169975]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+text = "Argent : + 0€
+Santé mental : + 0
+Note : + 0"
+
+[node name="RightMarginContainer2" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer" unique_id=322420648]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+
+[node name="RightVBoxContainer" type="VBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer2" unique_id=188504170]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer2/RightVBoxContainer" unique_id=568879649]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Objet prérequis"
+horizontal_alignment = 1
+
+[node name="ItemTextureRect" type="TextureRect" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer2/RightVBoxContainer" unique_id=2055172679]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_pth3o")
+
+[node name="ItemNameLabel" type="Label" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer2/RightVBoxContainer" unique_id=1421033509]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="ButtonHBoxContainer" type="HBoxContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer" unique_id=627201791]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="CancelButton" type="Button" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/ButtonHBoxContainer" unique_id=1297529532]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_rnr7b")
+text = "Annuler"
+
+[node name="ConfirButton" type="Button" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/ButtonHBoxContainer" unique_id=1337626238]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_sb852")
+text = "Valider"
