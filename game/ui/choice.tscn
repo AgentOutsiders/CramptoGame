@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dk7wgsp0f75we"]
 
-[ext_resource type="Script" uid="uid://cfavor3653gsf" path="res://ui/choiceUI.gd" id="1_lpra6"]
+[ext_resource type="Script" uid="uid://cfavor3653gsf" path="res://ui/choice_ui.gd" id="1_lpra6"]
+[ext_resource type="Texture2D" uid="uid://dg7gx07jxqg82" path="res://assets/no_image.png" id="2_6oqqk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpra6"]
 bg_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
@@ -13,8 +14,6 @@ corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_pth3o"]
 
 [node name="Choice" type="PanelContainer" unique_id=1378505442]
 custom_minimum_size = Vector2(400, 600)
@@ -51,7 +50,7 @@ custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("CanvasTexture_pth3o")
+texture = ExtResource("2_6oqqk")
 
 [node name="CostGainLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=223319694]
 layout_mode = 2

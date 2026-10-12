@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://dp11w25iexrp7"]
 
-[ext_resource type="Script" uid="uid://f1hkndokk1ch" path="res://ui/eventUI.gd" id="1_581bu"]
+[ext_resource type="Script" uid="uid://f1hkndokk1ch" path="res://ui/event_ui.gd" id="1_581bu"]
+[ext_resource type="Texture2D" uid="uid://dg7gx07jxqg82" path="res://assets/no_image.png" id="2_e7kib"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gr20t"]
+texture = ExtResource("2_e7kib")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pth3o"]
-bg_color = Color(0.32156864, 0.3254902, 0.3254902, 0.1882353)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65w1q"]
-bg_color = Color(0.32156864, 0.3254902, 0.3254902, 0.1882353)
+bg_color = Color(0, 0, 0, 0.33333334)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6sq7"]
 bg_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
@@ -18,8 +19,6 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_pth3o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq4b4"]
 bg_color = Color(0.25565878, 0.2556588, 0.2556587, 1)
@@ -58,41 +57,45 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_581bu")
+no_image = ExtResource("2_e7kib")
 
-[node name="TitleLabel" type="Label" parent="." unique_id=928483668]
+[node name="MainPanelContainer" type="PanelContainer" parent="." unique_id=1848077909]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 135.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gr20t")
+
+[node name="MainVBoxContainer" type="VBoxContainer" parent="MainPanelContainer" unique_id=1204196780]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TitleLabel" type="Label" parent="MainPanelContainer/MainVBoxContainer" unique_id=928483668]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_pth3o")
 text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1829337679]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -405.0
-offset_bottom = -155.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_65w1q")
+[node name="PanelContainer" type="PanelContainer" parent="MainPanelContainer/MainVBoxContainer" unique_id=1829337679]
+custom_minimum_size = Vector2(0, 285)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pth3o")
 
-[node name="DescriptionVBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1584092518]
+[node name="DescriptionVBoxContainer" type="VBoxContainer" parent="MainPanelContainer/MainVBoxContainer/PanelContainer" unique_id=1584092518]
 layout_mode = 2
 
-[node name="DescriptionLabel" type="Label" parent="PanelContainer/DescriptionVBoxContainer" unique_id=1280043194]
+[node name="DescriptionLabel" type="Label" parent="MainPanelContainer/MainVBoxContainer/PanelContainer/DescriptionVBoxContainer" unique_id=1280043194]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Description"
 horizontal_alignment = 1
 
-[node name="DescriptionRichTextLabel" type="RichTextLabel" parent="PanelContainer/DescriptionVBoxContainer" unique_id=1063690600]
+[node name="DescriptionRichTextLabel" type="RichTextLabel" parent="MainPanelContainer/MainVBoxContainer/PanelContainer/DescriptionVBoxContainer" unique_id=1063690600]
 custom_minimum_size = Vector2(800, 150)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -105,27 +108,26 @@ blablabla
 blablabla
 blalablabla"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=712661939]
-layout_mode = 0
-offset_top = 385.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="MarginContainer" type="MarginContainer" parent="MainPanelContainer/MainVBoxContainer" unique_id=712661939]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="ChoiceHBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=309380133]
+[node name="ChoiceHBoxContainer" type="HBoxContainer" parent="MainPanelContainer/MainVBoxContainer/MarginContainer" unique_id=309380133]
 layout_mode = 2
 
 [node name="FullInfoChoiceColorRect" type="ColorRect" parent="." unique_id=1043577603]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.12941177, 0.12941177, 0.12941177, 0.40392157)
+color = Color(0, 0, 0, 0.45490196)
 
 [node name="MarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect" unique_id=438480359]
 layout_mode = 1
@@ -186,7 +188,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("CanvasTexture_pth3o")
+texture = ExtResource("2_e7kib")
 
 [node name="RightMarginContainer" type="MarginContainer" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/TopHBoxContainer" unique_id=1442102316]
 layout_mode = 2
@@ -293,7 +295,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("CanvasTexture_pth3o")
+texture = ExtResource("2_e7kib")
 
 [node name="ItemNameLabel" type="Label" parent="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/FullInfoChoicePanelContainer/MarginContainer/VBoxContainer/BottomHBoxContainer/RightMarginContainer2/RightVBoxContainer" unique_id=1421033509]
 layout_mode = 2
@@ -324,3 +326,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_sb852")
 text = "Valider"
+
+[connection signal="pressed" from="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/ButtonHBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="FullInfoChoiceColorRect/MarginContainer/VBoxContainer/ButtonHBoxContainer/ConfirButton" to="." method="_on_confir_button_pressed"]
