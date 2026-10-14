@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b8q0j77glc6a3"]
+
+[ext_resource type="Script" uid="uid://cnthevqoqq2s6" path="res://models/stat_modifier.gd" id="1_x3lby"]
+[ext_resource type="Script" uid="uid://cdjt27bxeesjj" path="res://models/item.gd" id="2_bufpw"]
+
+[sub_resource type="Resource" id="Resource_fovme"]
+script = ExtResource("1_x3lby")
+_stat_type = 6
+_flat_bonus = 5
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[sub_resource type="Resource" id="Resource_773qs"]
+script = ExtResource("1_x3lby")
+_stat_type = 5
+_flat_bonus = 5
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[resource]
+script = ExtResource("2_bufpw")
+_name = "Ticket de cinéma"
+_price = 5.0
+_stat_modifiers = Array[ExtResource("1_x3lby")]([SubResource("Resource_fovme"), SubResource("Resource_773qs")])
+_max_owned = 10
+metadata/_custom_type_script = "uid://cdjt27bxeesjj"

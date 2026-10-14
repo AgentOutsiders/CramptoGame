@@ -7,3 +7,4 @@ class_name Item
 @export var _texture : Texture2D
 @export var _stat_modifiers : Array[StatModifier] = []
 @export var _description : String = ""
+@export var _max_owned : int = 0

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://f317vp6wr8dm"]
+
+[ext_resource type="Script" uid="uid://bd4wh4vjkafqg" path="res://ui/owned_item_slot.gd" id="1_epnlt"]
+[ext_resource type="Texture2D" uid="uid://dr75ji2f3tjn7" path="res://assets/test/laptop_icon.png" id="2_565jg"]
+[ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="3_565jg"]
+
+[node name="ItemSlot" type="VBoxContainer" unique_id=440362185]
+propagate_maximum_size = false
+offset_right = 252.0
+offset_bottom = 230.0
+script = ExtResource("1_epnlt")
+
+[node name="ItemPanel" type="PanelContainer" parent="." unique_id=1329955766]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemPanel" unique_id=306327648]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="ItemPanel/MarginContainer" unique_id=981345452]
+custom_minimum_size = Vector2(116, 116)
+layout_mode = 2
+texture = ExtResource("2_565jg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="." unique_id=1661285339]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_565jg")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1

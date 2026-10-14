@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://4h0gs67m0aiv"]
+
+[ext_resource type="Script" uid="uid://bvjcqyy2041dj" path="res://ui/informations.gd" id="1_kmeeq"]
+[ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="2_eudpk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8cge"]
+bg_color = Color(0.6, 0.6, 0.6, 0.3019608)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmeeq"]
+bg_color = Color(0.2, 0.55, 0.95, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vg2tl"]
+bg_color = Color(0.65, 0.35, 0.9, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yihbv"]
+bg_color = Color(0.2, 0.8, 0.35, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdaes"]
+bg_color = Color(0.95, 0.75, 0.15, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Informations" type="VBoxContainer" unique_id=1846551046]
+offset_right = 723.0
+offset_bottom = 556.0
+theme_override_constants/separation = 40
+script = ExtResource("1_kmeeq")
+
+[node name="Stats" type="VBoxContainer" parent="." unique_id=268876827]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TitleLabel" type="Label" parent="Stats" unique_id=9762392]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 32
+text = "Statistiques"
+
+[node name="GridContainer" type="GridContainer" parent="Stats" unique_id=151969600]
+layout_mode = 2
+theme_override_constants/h_separation = 75
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="ScienceLabel" type="Label" parent="Stats/GridContainer" unique_id=196423926]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "Science"
+
+[node name="ScienceProgressBar" type="ProgressBar" parent="Stats/GridContainer" unique_id=70761241]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_u8cge")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kmeeq")
+value = 50.0
+show_percentage = false
+
+[node name="LitteratureLabel" type="Label" parent="Stats/GridContainer" unique_id=264830800]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "Littérature"
+
+[node name="LitteratureProgressBar" type="ProgressBar" parent="Stats/GridContainer" unique_id=498569873]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_u8cge")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vg2tl")
+value = 50.0
+show_percentage = false
+
+[node name="SocialLifeLabel" type="Label" parent="Stats/GridContainer" unique_id=2081083227]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "Vie sociale"
+
+[node name="SocialLifeProgressBar" type="ProgressBar" parent="Stats/GridContainer" unique_id=288384370]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_u8cge")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yihbv")
+value = 50.0
+show_percentage = false
+
+[node name="HobbyLabel" type="Label" parent="Stats/GridContainer" unique_id=2106623203]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "Loisir"
+
+[node name="HobbyProgressBar" type="ProgressBar" parent="Stats/GridContainer" unique_id=511405224]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_u8cge")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kdaes")
+value = 50.0
+show_percentage = false
+
+[node name="Multipliers" type="VBoxContainer" parent="." unique_id=1734813052]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TitleLabel2" type="Label" parent="Multipliers" unique_id=1997256445]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 32
+text = "Multiplicateurs"
+
+[node name="GridContainer" type="GridContainer" parent="Multipliers" unique_id=1318456991]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="MethodologyLabel" type="Label" parent="Multipliers/GridContainer" unique_id=832351898]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "Methodologie"
+
+[node name="MethodologyValueLabel" type="Label" parent="Multipliers/GridContainer" unique_id=1129791335]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.75, 0.15, 1)
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "x1.00"
+
+[node name="AttendanceLabel" type="Label" parent="Multipliers/GridContainer" unique_id=342855742]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "Assiduité"
+
+[node name="AttendanceValueLabel" type="Label" parent="Multipliers/GridContainer" unique_id=1952826966]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.4, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "x1.00"
+
+[node name="SleepLabel" type="Label" parent="Multipliers/GridContainer" unique_id=1427782806]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "Sommeil"
+
+[node name="SleepValueLabel" type="Label" parent="Multipliers/GridContainer" unique_id=1500629055]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 0.9, 1)
+theme_override_fonts/font = ExtResource("2_eudpk")
+theme_override_font_sizes/font_size = 28
+text = "x1.00"

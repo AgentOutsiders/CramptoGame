@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="2_3uonw"]
 
 [node name="ItemButton" type="Button" unique_id=1940370657]
-custom_minimum_size = Vector2(420, 430)
+custom_minimum_size = Vector2(350, 360)
 script = ExtResource("1_sm061")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1513457712]
@@ -27,5 +27,6 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3uonw")
 theme_override_font_sizes/font_size = 28
+text = "s"
 horizontal_alignment = 1
 autowrap_mode = 2

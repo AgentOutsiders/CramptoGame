@@ -6,6 +6,11 @@
 [ext_resource type="Resource" uid="uid://d2rdojdvbwva1" path="res://data/laptop.tres" id="4_e4u7y"]
 [ext_resource type="Resource" uid="uid://dkuiy6vi01u5w" path="res://data/ball.tres" id="5_t603m"]
 [ext_resource type="PackedScene" uid="uid://bjvs5qyemguwy" path="res://ui/purchase_confirmation_popup.tscn" id="6_67uj7"]
+[ext_resource type="Resource" uid="uid://bnw28kqn0uqp" path="res://data/claude.tres" id="6_i5mka"]
+[ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="7_qxnrq"]
+[ext_resource type="Resource" uid="uid://dfq4mguq63jhq" path="res://data/pillow.tres" id="7_tyvbe"]
+[ext_resource type="Resource" uid="uid://b8q0j77glc6a3" path="res://data/movie_ticket.tres" id="8_tdjdk"]
+[ext_resource type="PackedScene" uid="uid://4h0gs67m0aiv" path="res://ui/informations.tscn" id="11_fovme"]
 
 [node name="Shop" type="Control" unique_id=1128433986]
 layout_mode = 3
@@ -15,18 +20,133 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_foe6g")
-_available_items = Array[ExtResource("2_1slnd")]([ExtResource("3_e4u7y"), ExtResource("4_e4u7y"), ExtResource("5_t603m")])
+_available_items = Array[ExtResource("2_1slnd")]([ExtResource("3_e4u7y"), ExtResource("4_e4u7y"), ExtResource("5_t603m"), ExtResource("6_i5mka"), ExtResource("7_tyvbe"), ExtResource("8_tdjdk"), ExtResource("6_i5mka"), ExtResource("7_tyvbe"), ExtResource("8_tdjdk")])
 
-[node name="ItemContainer" type="HBoxContainer" parent="." unique_id=1812261318]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1515578416]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
-alignment = 1
+color = Color(0.92941177, 0.6117647, 0.101960786, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=500550081]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1212.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5568628)
+
+[node name="MarginContainer4" type="MarginContainer" parent="." unique_id=1404268005]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer4" unique_id=1849549925]
+layout_mode = 2
+
+[node name="ItemContainer" type="GridContainer" parent="MarginContainer4/ScrollContainer" unique_id=1769095446]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 3
 
 [node name="PurchaseConfirmationPopup" parent="." unique_id=1508004885 instance=ExtResource("6_67uj7")]
+
+[node name="NotificationTimer" type="Timer" parent="." unique_id=757174053]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=294494395]
+layout_mode = 0
+offset_left = 1216.0
+offset_top = 64.0
+offset_right = 1919.0
+offset_bottom = 161.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Notificationlabel" type="Label" parent="MarginContainer" unique_id=65702030]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.624, 0.804, 0, 1)
+theme_override_fonts/font = ExtResource("7_qxnrq")
+theme_override_font_sizes/font_size = 32
+text = "
+"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1264002745]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -41.0
+offset_bottom = 72.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer2" unique_id=265230902]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_qxnrq")
+theme_override_font_sizes/font_size = 34
+
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1848449885]
+layout_mode = 0
+offset_left = 1219.0
+offset_top = 186.0
+offset_right = 1712.0
+offset_bottom = 236.0
+theme_override_constants/margin_left = 20
+
+[node name="OwnedItemsLabel" type="Label" parent="MarginContainer3" unique_id=1016591418]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_qxnrq")
+theme_override_font_sizes/font_size = 32
+text = "Items possédés :"
+
+[node name="MarginContainer5" type="MarginContainer" parent="." unique_id=613305610]
+layout_mode = 0
+offset_left = 1249.0
+offset_top = 261.0
+offset_right = 1881.0
+offset_bottom = 517.0
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer5" unique_id=1198516397]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="OwnedItemsGrid" type="GridContainer" parent="MarginContainer5/ScrollContainer2" unique_id=1824719856]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 4
+
+[node name="MarginContainer6" type="MarginContainer" parent="." unique_id=1983899205]
+layout_mode = 0
+offset_left = 1235.0
+offset_top = 546.0
+offset_right = 1897.0
+offset_bottom = 1072.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsBars" parent="MarginContainer6" unique_id=1846551046 instance=ExtResource("11_fovme")]
+layout_mode = 2

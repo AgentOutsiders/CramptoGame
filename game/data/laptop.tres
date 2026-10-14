@@ -31,4 +31,5 @@ _price = 500.0
 _texture = ExtResource("2_vgh4f")
 _stat_modifiers = Array[ExtResource("1_u7txe")]([SubResource("Resource_srr8h"), SubResource("Resource_3dnf7"), SubResource("Resource_hv2qw")])
 _description = "Un ordinateur portable."
+_max_owned = 10
 metadata/_custom_type_script = "uid://cdjt27bxeesjj"

@@ -23,4 +23,5 @@ _price = 34600.0
 _texture = ExtResource("2_bcl8f")
 _stat_modifiers = Array[ExtResource("1_phg4l")]([SubResource("Resource_bjos7"), SubResource("Resource_bcl8f")])
 _description = "Une voiture neuve."
+_max_owned = 1
 metadata/_custom_type_script = "uid://cdjt27bxeesjj"

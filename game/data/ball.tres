@@ -17,4 +17,5 @@ _price = 10.0
 _texture = ExtResource("2_uwhqc")
 _stat_modifiers = Array[ExtResource("1_j1x8e")]([SubResource("Resource_jaqew")])
 _description = "Un ballon."
+_max_owned = 10
 metadata/_custom_type_script = "uid://cdjt27bxeesjj"
