@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="7_qxnrq"]
 [ext_resource type="Resource" uid="uid://dfq4mguq63jhq" path="res://data/pillow.tres" id="7_tyvbe"]
 [ext_resource type="Resource" uid="uid://b8q0j77glc6a3" path="res://data/movie_ticket.tres" id="8_tdjdk"]
+[ext_resource type="Texture2D" uid="uid://b6ujb4tf3rsac" path="res://assets/test/shop_bg.png" id="9_773qs"]
 [ext_resource type="PackedScene" uid="uid://4h0gs67m0aiv" path="res://ui/informations.tscn" id="11_fovme"]
 
 [node name="Shop" type="Control" unique_id=1128433986]
@@ -22,14 +23,14 @@ grow_vertical = 2
 script = ExtResource("1_foe6g")
 _available_items = Array[ExtResource("2_1slnd")]([ExtResource("3_e4u7y"), ExtResource("4_e4u7y"), ExtResource("5_t603m"), ExtResource("6_i5mka"), ExtResource("7_tyvbe"), ExtResource("8_tdjdk"), ExtResource("6_i5mka"), ExtResource("7_tyvbe"), ExtResource("8_tdjdk")])
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1515578416]
+[node name="ColorRect" type="TextureRect" parent="." unique_id=397484895]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.92941177, 0.6117647, 0.101960786, 1)
+texture = ExtResource("9_773qs")
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=500550081]
 layout_mode = 1

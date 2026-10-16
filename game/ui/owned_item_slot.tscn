@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://f317vp6wr8dm"]
 
 [ext_resource type="Script" uid="uid://bd4wh4vjkafqg" path="res://ui/owned_item_slot.gd" id="1_epnlt"]
-[ext_resource type="Texture2D" uid="uid://dr75ji2f3tjn7" path="res://assets/test/laptop_icon.png" id="2_565jg"]
+[ext_resource type="Texture2D" uid="uid://cmr1ythdf6cux" path="res://assets/test/laptop_icon.png" id="2_565jg"]
 [ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="3_565jg"]
 
 [node name="ItemSlot" type="VBoxContainer" unique_id=440362185]
