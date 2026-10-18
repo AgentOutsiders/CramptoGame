@@ -7,4 +7,11 @@
 script = ExtResource("1_33tge")
 character_name = "ChevalierAlexis"
 portrait = ExtResource("1_6i5oh")
+scientific = 53
+literature = 28
+methodology = 7
+attendance = 40
+sleep = 70
+social_life = 23
+leisure = 91
 metadata/_custom_type_script = "uid://d1eoo223wl4qx"
