@@ -22,5 +22,6 @@ _name = "Ticket de cinéma"
 _price = 5.0
 _texture = ExtResource("2_jd1gm")
 _stat_modifiers = Array[ExtResource("1_x3lby")]([SubResource("Resource_fovme"), SubResource("Resource_773qs")])
+_description = "Un ticket de cinéma"
 _max_owned = 10
 metadata/_custom_type_script = "uid://cdjt27bxeesjj"

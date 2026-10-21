@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_eyy2f"]
 script = ExtResource("1_ovcvy")
 _stat_type = 4
-_flat_bonus = 10
+_multiplier_bonus = 0.8
 metadata/_custom_type_script = "uid://cnthevqoqq2s6"
 
 [resource]
@@ -16,5 +16,6 @@ _name = "Oreiller"
 _price = 30.0
 _texture = ExtResource("2_eyy2f")
 _stat_modifiers = Array[ExtResource("1_ovcvy")]([SubResource("Resource_eyy2f")])
+_description = "Un oreiller"
 _max_owned = 1
 metadata/_custom_type_script = "uid://cdjt27bxeesjj"

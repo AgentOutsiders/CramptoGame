@@ -23,7 +23,7 @@ grow_vertical = 2
 script = ExtResource("1_foe6g")
 _available_items = Array[ExtResource("2_1slnd")]([ExtResource("3_e4u7y"), ExtResource("4_e4u7y"), ExtResource("5_t603m"), ExtResource("6_i5mka"), ExtResource("7_tyvbe"), ExtResource("8_tdjdk"), ExtResource("6_i5mka"), ExtResource("7_tyvbe"), ExtResource("8_tdjdk")])
 
-[node name="ColorRect" type="TextureRect" parent="." unique_id=397484895]
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=397484895]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_773qs")
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=500550081]
+[node name="SidePanelColorRect" type="ColorRect" parent="." unique_id=500550081]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5568628)
 
-[node name="MarginContainer4" type="MarginContainer" parent="." unique_id=1404268005]
+[node name="ShopItemsMargin" type="MarginContainer" parent="." unique_id=1404268005]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,10 +53,10 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer4" unique_id=1849549925]
+[node name="ShopItemsScroll" type="ScrollContainer" parent="ShopItemsMargin" unique_id=1849549925]
 layout_mode = 2
 
-[node name="ItemContainer" type="GridContainer" parent="MarginContainer4/ScrollContainer" unique_id=1769095446]
+[node name="ShopItemsGrid" type="GridContainer" parent="ShopItemsMargin/ShopItemsScroll" unique_id=1769095446]
 layout_mode = 2
 theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 30
@@ -66,7 +66,7 @@ columns = 3
 
 [node name="NotificationTimer" type="Timer" parent="." unique_id=757174053]
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=294494395]
+[node name="NotificationMargin" type="MarginContainer" parent="." unique_id=294494395]
 layout_mode = 0
 offset_left = 1216.0
 offset_top = 64.0
@@ -77,7 +77,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Notificationlabel" type="Label" parent="MarginContainer" unique_id=65702030]
+[node name="NotificationLabel" type="Label" parent="NotificationMargin" unique_id=65702030]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.624, 0.804, 0, 1)
 theme_override_fonts/font = ExtResource("7_qxnrq")
@@ -87,7 +87,7 @@ text = "
 horizontal_alignment = 2
 autowrap_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1264002745]
+[node name="MoneyMargin" type="MarginContainer" parent="." unique_id=1264002745]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -100,12 +100,12 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="MoneyLabel" type="Label" parent="MarginContainer2" unique_id=265230902]
+[node name="MoneyLabel" type="Label" parent="MoneyMargin" unique_id=265230902]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_qxnrq")
 theme_override_font_sizes/font_size = 34
 
-[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1848449885]
+[node name="OwnedItemsTitleMargin" type="MarginContainer" parent="." unique_id=1848449885]
 layout_mode = 0
 offset_left = 1219.0
 offset_top = 186.0
@@ -113,32 +113,32 @@ offset_right = 1712.0
 offset_bottom = 236.0
 theme_override_constants/margin_left = 20
 
-[node name="OwnedItemsLabel" type="Label" parent="MarginContainer3" unique_id=1016591418]
+[node name="OwnedItemsTitleLabel" type="Label" parent="OwnedItemsTitleMargin" unique_id=1016591418]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_qxnrq")
 theme_override_font_sizes/font_size = 32
 text = "Items possédés :"
 
-[node name="MarginContainer5" type="MarginContainer" parent="." unique_id=613305610]
+[node name="OwnedItemsMargin" type="MarginContainer" parent="." unique_id=613305610]
 layout_mode = 0
 offset_left = 1249.0
 offset_top = 261.0
 offset_right = 1881.0
 offset_bottom = 517.0
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer5" unique_id=1198516397]
+[node name="OwnedItemsScroll" type="ScrollContainer" parent="OwnedItemsMargin" unique_id=1198516397]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="OwnedItemsGrid" type="GridContainer" parent="MarginContainer5/ScrollContainer2" unique_id=1824719856]
+[node name="OwnedItemsGrid" type="GridContainer" parent="OwnedItemsMargin/OwnedItemsScroll" unique_id=1824719856]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 30
 columns = 4
 
-[node name="MarginContainer6" type="MarginContainer" parent="." unique_id=1983899205]
+[node name="StatsMargin" type="MarginContainer" parent="." unique_id=1983899205]
 layout_mode = 0
 offset_left = 1235.0
 offset_top = 546.0
@@ -149,5 +149,5 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="StatsBars" parent="MarginContainer6" unique_id=1846551046 instance=ExtResource("11_fovme")]
+[node name="StatsInformations" parent="StatsMargin" unique_id=1846551046 instance=ExtResource("11_fovme")]
 layout_mode = 2
