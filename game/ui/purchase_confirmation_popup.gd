@@ -4,31 +4,44 @@ class_name PurchaseConfirmationPopup
 signal purchase_confirmed(item: Item, quantity: int)
 
 var _item: Item
+var _quantity: int = 1
+# nombre d'exemplaires qu'on peut encore acheter (maximum de l'item - exemplaires déjà possédés)
+var _max_quantity: int = 0
 @onready var _title_label: Label = $ContentVBox/TitleLabel
-@onready var _purchase_button: Button = $ContentVBox/ActionsHBox/PurchaseButton
-@onready var _cancel_button: Button = $ContentVBox/ActionsHBox/CancelButton
 @onready var _description_label: Label = $ContentVBox/DescriptionLabel
-@onready var _up_arrow_button: Button = $ContentVBox/QuantityHBox/ArrowsVBox/UpArrowButton
-@onready var _down_arrow_button: Button = $ContentVBox/QuantityHBox/ArrowsVBox/DownArrowButton
-@onready var _quantity_label: Label = $ContentVBox/QuantityHBox/QuantityLabel
-@onready var _max_quantity_label: Label = $ContentVBox/MaxQuantityLabel
+@onready var _bonuses_label: Label = $ContentVBox/BottomHBox/DetailsVBox/BonusesLabel
+@onready var _max_quantity_label: Label = $ContentVBox/BottomHBox/DetailsVBox/MaxQuantityLabel
+@onready var _quantity_label: Label = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/QuantityLabel
+@onready var _up_arrow_button: Button = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox/UpArrowButton
+@onready var _down_arrow_button: Button = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox/DownArrowButton
+@onready var _purchase_button: Button = $ContentVBox/BottomHBox/DetailsVBox/ActionsHBox/PurchaseButton
+@onready var _cancel_button: Button = $ContentVBox/BottomHBox/DetailsVBox/ActionsHBox/CancelButton
+# récap des stats en bas à droite : copie des stats du shop, avec l'aperçu de l'achat qui clignote
+@onready var _stats_informations: Informations = $ContentVBox/BottomHBox/StatsPanel/StatsInformations
 
 
-# top_right : point (en coordonnées globales) où sera placé le coin haut-droit du popup
-func show_item(item: Item, top_right: Vector2) -> void:
+# current_stats : le panneau de stats du shop, recopié dans le récap du popup
+# owned_amount : nombre d'exemplaires de l'item déjà possédés
+func show_item(item: Item, current_stats: Informations, owned_amount: int) -> void:
 	_item = item
-	_title_label.text = item._name
+	_max_quantity = max(0, item.get_max_owned() - owned_amount)
+	_quantity = min(1, _max_quantity)
+	# rien à acheter si on a déjà le maximum
+	_purchase_button.disabled = _max_quantity == 0
+	_title_label.text = item.get_item_name()
+	_description_label.text = item.get_display_description()
+	# sans description, le label est caché : il ne prend plus de place et le titre se recentre tout seul
+	_description_label.visible = _description_label.text != ""
 
-	_max_quantity_label.text = "Maximum obtenable : " + str(_item._max_owned)
-	var stats_text: String = ""
-	for modifier in item._stat_modifiers:
-		stats_text += modifier.display_text() + "\n"
-	_description_label.text = "%s\n\n%s" % [item._description, stats_text]
+	var bonuses_text: String = ""
+	for modifier in item.get_stat_modifiers():
+		bonuses_text += modifier.display_text() + "\n"
+	_bonuses_label.text = bonuses_text.strip_edges()
+	_max_quantity_label.text = "Maximum : %d\nDéjà possédé : %d" % [item.get_max_owned(), owned_amount]
 
-	# popup() d'abord : le popup peut s'agrandir à l'affichage pour contenir son texte,
-	# on le place ensuite avec sa taille définitive
-	popup()
-	position = Vector2i(top_right) - Vector2i(size.x, 0)
+	_stats_informations.copy_from(current_stats)
+	_update_quantity()
+	popup_centered()
 
 func _ready() -> void:
 	#on utilise connect pour connecter des signaux à des fonctions
@@ -38,26 +51,27 @@ func _ready() -> void:
 	_down_arrow_button.pressed.connect(_on_down_arrow_pressed)
 	#popup_hide = signal de la classe PopUp
 	popup_hide.connect(_on_popup_hide)
-	
+
+# affiche la quantité et met à jour l'aperçu des stats en fonction d'elle
+func _update_quantity() -> void:
+	_quantity_label.text = str(_quantity)
+	_stats_informations.show_preview(_item.get_stat_modifiers(), _quantity)
+
 func _on_confirm_pressed() -> void:
-	purchase_confirmed.emit(_item,int(_quantity_label.text))
-	_quantity_label.text = str(1)
+	purchase_confirmed.emit(_item, _quantity)
 	hide()
 
 func _on_cancel_pressed() -> void:
-	_quantity_label.text = str(1)
 	hide()
-	
+
 func _on_popup_hide() -> void:
-	_quantity_label.text = str(1)
-	
+	# arrête le clignotement tant que le popup est fermé
+	_stats_informations.clear_preview()
+
 func _on_up_arrow_pressed() -> void:
-	var temp: int = int(_quantity_label.text)
-	_quantity_label.text = str(min(10, temp + 1 ))
+	_quantity = min(_max_quantity, _quantity + 1)
+	_update_quantity()
 
 func _on_down_arrow_pressed() -> void:
-	var temp: int = int(_quantity_label.text)
-	_quantity_label.text = str(max(1, temp - 1))
-	
-	
-	
+	_quantity = max(min(1, _max_quantity), _quantity - 1)
+	_update_quantity()

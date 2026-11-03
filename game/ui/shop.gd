@@ -38,14 +38,14 @@ func _ready() -> void:
 	_notification_timer.timeout.connect(_on_notification_timeout)
 	
 func _on_item_selected(item: Item) -> void:
-	_purchase_confirmation_popup.show_item(item, _get_popup_top_right())
-	print("Item sélectionné dans la boutique : ", item._name)
+	_purchase_confirmation_popup.show_item(item, _stats_informations, _owned_items.get(item, 0))
+	print("Item sélectionné dans la boutique : ", item.get_item_name())
 	
 func _on_purchase_confirmed(item: Item, quantity: int) -> void:
 	if quantity == 0:
 		return
 	#On regarde d'abord si on peut faire l'achat
-	var total_price: int = quantity * int(item._price)
+	var total_price: int = quantity * int(item.get_price())
 	if total_price > _current_money:
 		_notification_label.add_theme_color_override("font_color", Color(0.962, 0.0, 0.0, 1.0))
 		_show_notification("Pas assez d'argent !")
@@ -56,13 +56,13 @@ func _on_purchase_confirmed(item: Item, quantity: int) -> void:
 	if added_quantity == 0:
 		return
 
-	_current_money -= added_quantity * int(item._price)
+	_current_money -= added_quantity * int(item.get_price())
 	_money_label.text = str(_current_money) + "$"
 
 	# chaque exemplaire réellement acheté applique son bonus à la jauge correspondante
-	for modifier in item._stat_modifiers:
-		_stats_informations.add_stat(modifier._stat_type, modifier._flat_bonus * added_quantity)
-		_stats_informations.add_multiplier(modifier._stat_type, modifier._multiplier_bonus * added_quantity)
+	for modifier in item.get_stat_modifiers():
+		_stats_informations.add_stat(modifier.get_stat_type(), modifier.get_flat_bonus() * added_quantity)
+		_stats_informations.add_multiplier(modifier.get_stat_type(), modifier.get_multiplier_bonus() * added_quantity)
 
 	_notification_label.add_theme_color_override("font_color", Color(0.01, 0.82, 0.0, 1.0))
 
@@ -73,7 +73,7 @@ func _on_purchase_confirmed(item: Item, quantity: int) -> void:
 	
 func _add_owned_item(item: Item, quantity: int) -> int:
 	var current_amount: int = _owned_items.get(item, 0)
-	var quantity_to_add: int = min(quantity, item._max_owned - current_amount)
+	var quantity_to_add: int = min(quantity, item.get_max_owned() - current_amount)
 
 	if quantity_to_add <= 0:
 		_notification_label.add_theme_color_override("font_color", Color(0.962, 0.0, 0.0, 1.0))
@@ -93,23 +93,18 @@ func _add_owned_item(item: Item, quantity: int) -> int:
 	return quantity_to_add
 	
 func _on_owned_slot_clicked(item: Item) -> void:
-	_owned_panels[item].open_sell_popup(_get_popup_top_right())
-
-# les popups d'achat et de vente sont collés à gauche de la liste des items possédés :
-# leur coin haut-droit est placé sur le coin haut-gauche du ScrollContainer
-func _get_popup_top_right() -> Vector2:
-	return _owned_items_grid.get_parent().get_global_rect().position
+	_owned_panels[item].open_sell_popup(_stats_informations)
 
 func _on_sell_confirmed(item: Item, quantity: int) -> void:
-	_current_money += quantity * int(item._price)
+	_current_money += quantity * int(item.get_price())
 	_money_label.text = str(_current_money) + "$"
 	_notification_label.add_theme_color_override("font_color", Color(0.01, 0.82, 0.0, 1.0))
 	_show_notification("Vente effectuée !")
 
 	# on retire le bonus de chaque exemplaire vendu
-	for modifier in item._stat_modifiers:
-		_stats_informations.add_stat(modifier._stat_type, -modifier._flat_bonus * quantity)
-		_stats_informations.add_multiplier(modifier._stat_type, -modifier._multiplier_bonus * quantity)
+	for modifier in item.get_stat_modifiers():
+		_stats_informations.add_stat(modifier.get_stat_type(), -modifier.get_flat_bonus() * quantity)
+		_stats_informations.add_multiplier(modifier.get_stat_type(), -modifier.get_multiplier_bonus() * quantity)
 
 	_owned_items[item] -= quantity
 	if _owned_items[item] <= 0:

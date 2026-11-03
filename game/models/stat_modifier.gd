@@ -5,6 +5,15 @@ class_name StatModifier
 @export var _flat_bonus: int = 0
 @export var _multiplier_bonus: float = 0.0
 
+func get_stat_type() -> StatType.Type:
+	return _stat_type
+
+func get_flat_bonus() -> int:
+	return _flat_bonus
+
+func get_multiplier_bonus() -> float:
+	return _multiplier_bonus
+
 # texte affiché dans les popups, ex : "Scientifique : +10" ou "Sommeil : +0,80"
 func display_text() -> String:
 	var stat_name: String = StatType.display_name(_stat_type)

@@ -14,8 +14,8 @@ func setup(item : Item) -> void:
 	_item = item
 	# le fonctionnement ressemble à un printf ex:(ordi - 100 $)
 	#.0f = flottant avec 0 chiffres après la virgule
-	_name_price_label.text = "%s - %.0f $" % [item._name, item._price]
-	_icon_texture_rect.texture = item._texture
+	_name_price_label.text = "%s - %.0f $" % [item.get_item_name(), item.get_price()]
+	_icon_texture_rect.texture = item.get_texture()
 	
 
 # fonction privée propre à la classe Button, refdéfinie ici

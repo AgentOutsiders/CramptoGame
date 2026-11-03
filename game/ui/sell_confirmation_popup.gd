@@ -3,91 +3,75 @@ class_name SellConfirmationPopup
 
 signal sell_confirmed(item: Item, quantity: int)
 
-@export var _expand_duration: float = 0.25
-
 var _item: Item
-var _amount : int
-var _base_size: Vector2i
-var _expand_tween: Tween
+var _quantity: int = 1
+# nombre d'exemplaires possédés : on ne peut pas en vendre plus
+var _owned_amount: int = 0
 @onready var _title_label: Label = $ContentVBox/TitleLabel
 @onready var _description_label: Label = $ContentVBox/DescriptionLabel
-@onready var _sell_button: Button = $ContentVBox/ActionsHBox/SellButton
-@onready var _back_button: Button = $ContentVBox/ActionsHBox/BackButton
-# SellSectionControl est un simple Control qui coupe ce qui dépasse :
-# on anime sa hauteur pour que les éléments au-dessus glissent au lieu de se téléporter
-@onready var _sell_section_control: Control = $ContentVBox/SellSectionControl
-@onready var _sell_section_vbox: VBoxContainer = $ContentVBox/SellSectionControl/SellSectionVBox
-@onready var _up_arrow_button: Button = $ContentVBox/SellSectionControl/SellSectionVBox/QuantityHBox/ArrowsVBox/UpArrowButton
-@onready var _down_arrow_button: Button = $ContentVBox/SellSectionControl/SellSectionVBox/QuantityHBox/ArrowsVBox/DownArrowButton
-@onready var _quantity_label: Label = $ContentVBox/SellSectionControl/SellSectionVBox/QuantityHBox/QuantityLabel
-@onready var _confirm_button: Button = $ContentVBox/SellSectionControl/SellSectionVBox/ConfirmButton
+@onready var _bonuses_label: Label = $ContentVBox/BottomHBox/DetailsVBox/BonusesLabel
+@onready var _max_quantity_label: Label = $ContentVBox/BottomHBox/DetailsVBox/MaxQuantityLabel
+@onready var _quantity_label: Label = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/QuantityLabel
+@onready var _up_arrow_button: Button = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox/UpArrowButton
+@onready var _down_arrow_button: Button = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox/DownArrowButton
+@onready var _sell_button: Button = $ContentVBox/BottomHBox/DetailsVBox/ActionsHBox/SellButton
+@onready var _cancel_button: Button = $ContentVBox/BottomHBox/DetailsVBox/ActionsHBox/CancelButton
+# récap des stats en bas à droite : copie des stats du shop, avec l'aperçu de la vente qui clignote
+@onready var _stats_informations: Informations = $ContentVBox/BottomHBox/StatsPanel/StatsInformations
 
-# top_right : point (en coordonnées globales) où sera placé le coin haut-droit du popup
-func show_item(item: Item, amount: int, top_right: Vector2) -> void:
+
+# owned_amount : nombre d'exemplaires de l'item possédés
+# current_stats : le panneau de stats du shop, recopié dans le récap du popup
+func show_item(item: Item, owned_amount: int, current_stats: Informations) -> void:
 	_item = item
-	_amount = amount
-	_title_label.text = "%s (x%d)" % [item._name, amount]
+	_owned_amount = owned_amount
+	_quantity = min(1, _owned_amount)
+	_sell_button.disabled = _owned_amount == 0
+	_title_label.text = item.get_item_name()
+	_description_label.text = item.get_display_description()
+	# sans description, le label est caché : il ne prend plus de place et le titre se recentre tout seul
+	_description_label.visible = _description_label.text != ""
 
-	var stats_text: String = ""
-	for modifier in item._stat_modifiers:
-		stats_text += modifier.display_text() + "\n"
-	_description_label.text = "\n%s\n\n%s" % [item._description, stats_text]
+	var bonuses_text: String = ""
+	for modifier in item.get_stat_modifiers():
+		bonuses_text += modifier.display_text() + "\n"
+	_bonuses_label.text = bonuses_text.strip_edges()
+	_max_quantity_label.text = "Possédé : %d" % owned_amount
 
-	# popup() d'abord : le popup peut s'agrandir à l'affichage pour contenir son texte,
-	# on le place ensuite avec sa taille définitive
-	popup()
-	position = Vector2i(top_right) - Vector2i(size.x, 0)
-	
+	_stats_informations.copy_from(current_stats)
+	_update_quantity()
+	popup_centered()
+
 func _ready() -> void:
-	_sell_button.pressed.connect(_on_sell_item_pressed)
-	_back_button.pressed.connect(_on_back_pressed)
+	_sell_button.pressed.connect(_on_confirm_pressed)
+	_cancel_button.pressed.connect(_on_cancel_pressed)
 	_up_arrow_button.pressed.connect(_on_up_arrow_pressed)
 	_down_arrow_button.pressed.connect(_on_down_arrow_pressed)
-	_confirm_button.pressed.connect(_on_confirm_button_pressed)
 	#popup_hide = signal de la classe Popup, déclenché aussi quand on clique en dehors
 	popup_hide.connect(_on_popup_hide)
-	_base_size = size
 
-func _on_sell_item_pressed() -> void:
-	if _sell_section_vbox.visible:
-		return
-	_sell_section_vbox.visible = true
-	var expand_height: float = _sell_section_vbox.get_combined_minimum_size().y
+# affiche la quantité et met à jour l'aperçu des stats en fonction d'elle
+# (quantité négative : l'aperçu montre ce qui sera perdu, en rouge)
+func _update_quantity() -> void:
+	_quantity_label.text = str(_quantity)
+	_stats_informations.show_preview(_item.get_stat_modifiers(), -_quantity)
 
-	# le popup et la section grandissent de la même hauteur en même temps (parallel) :
-	# le contenu suit la bordure du haut et la section se dévoile par le bas
-	_expand_tween = create_tween().set_parallel().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	_expand_tween.tween_method(_set_popup_height, size.y, _base_size.y + int(expand_height), _expand_duration)
-	_expand_tween.tween_property(_sell_section_control, "custom_minimum_size:y", expand_height, _expand_duration)
-
-# change la hauteur du popup en gardant son centre au même endroit, pour qu'il s'agrandisse vers le haut et le bas
-func _set_popup_height(height: int) -> void:
-	var center_y: float = position.y + size.y / 2.0
-	size.y = height
-	position.y = int(center_y - height / 2.0)
-
-func _on_back_pressed() -> void:
+func _on_confirm_pressed() -> void:
+	sell_confirmed.emit(_item, _quantity)
 	hide()
 
-# remet le popup dans son état de départ pour la prochaine ouverture
+func _on_cancel_pressed() -> void:
+	hide()
+
 func _on_popup_hide() -> void:
-	if _expand_tween:
-		_expand_tween.kill()
-	_sell_section_vbox.visible = false
-	_sell_section_control.custom_minimum_size.y = 0
-	_quantity_label.text = str(1)
-	size = _base_size
-
-func _on_confirm_button_pressed() -> void:
-	sell_confirmed.emit(_item, int(_quantity_label.text))
-	_quantity_label.text = str(1)
-	hide()
+	# arrête le clignotement tant que le popup est fermé
+	_stats_informations.clear_preview()
 
 func _on_up_arrow_pressed() -> void:
-	var temp: int = int(_quantity_label.text)
 	# on ne peut pas vendre plus que ce qu'on possède
-	_quantity_label.text = str(min(_amount, temp + 1))
+	_quantity = min(_owned_amount, _quantity + 1)
+	_update_quantity()
 
 func _on_down_arrow_pressed() -> void:
-	var temp: int = int(_quantity_label.text)
-	_quantity_label.text = str(max(1, temp - 1))
+	_quantity = max(min(1, _owned_amount), _quantity - 1)
+	_update_quantity()

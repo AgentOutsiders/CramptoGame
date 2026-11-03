@@ -18,8 +18,8 @@ func _ready() -> void:
 	
 func setup(item: Item) -> void:
 	_item = item
-	_icon_texture_rect.texture = item._texture
-	tooltip_text = "%s\nClic : informations" % item._name
+	_icon_texture_rect.texture = item.get_texture()
+	tooltip_text = "%s\nClic : informations" % item.get_item_name()
 	
 func set_amount(amount : int) -> void:
 	_amount = amount
@@ -30,8 +30,9 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		slot_clicked.emit(_item)
 		
-# appelé par le shop au clic, car c'est lui qui connaît la mise en page et donc où placer le popup
-func open_sell_popup(top_right: Vector2) -> void:
-	_sell_confirmation_popup.show_item(_item, _amount, top_right)
+# appelé par le shop au clic sur le slot
+# current_stats : le panneau de stats du shop, affiché en récap dans le popup
+func open_sell_popup(current_stats: Informations) -> void:
+	_sell_confirmation_popup.show_item(_item, _amount, current_stats)
 	
 		
