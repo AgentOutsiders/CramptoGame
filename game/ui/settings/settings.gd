@@ -1,94 +1,126 @@
 extends Control
 
-const SAVE_PATH := "user://settings.cfg"
-const MAIN_MENU_PATH := "res://ui/main/main_menu.tscn"
-const INK := Color(0.11, 0.14, 0.3)
-const PAPER := Color(0.965, 0.95, 0.9)
-const HIGHLIGHTER := Color(1, 0.91, 0.16, 0.7)
+const MAIN_MENU_PATH: String = "res://ui/main/main_menu.tscn"
+const CREDITS_PATH: String = "res://ui/credits/credits.tscn"
+const HIGHLIGHTER_ALPHA: float = 0.7
 
 @onready var sfx_slider: HSlider = %SfxSlider
 @onready var sfx_value: Label = %SfxValue
 @onready var music_slider: HSlider = %MusicSlider
 @onready var music_value: Label = %MusicValue
 @onready var track_option: OptionButton = %TrackOption
+@onready var highlighter_option: OptionButton = %HighlighterOption
+@onready var credits_button: Button = %CreditsButton
 @onready var back_button: Button = %BackButton
 
 
 func _ready() -> void:
-	for slider in [sfx_slider, music_slider]:
-		slider.min_value = 0
-		slider.max_value = 100
-		slider.step = 1
-
-	_setup_track_option()
+	setup_track_option()
+	setup_highlighter_option()
+	update_highlighter()
 	load_settings()
 
-	sfx_slider.value_changed.connect(_on_sfx_changed)
-	music_slider.value_changed.connect(_on_music_changed)
-	sfx_slider.drag_ended.connect(func(_changed): AudioManager.play_click())
+	sfx_slider.value_changed.connect(_on_sfx_slider_changed)
+	sfx_slider.drag_ended.connect(_on_sfx_slider_drag_ended)
+	music_slider.value_changed.connect(_on_music_slider_changed)
+
+	track_option.pressed.connect(_on_option_pressed)
 	track_option.item_selected.connect(_on_track_selected)
-	track_option.pressed.connect(AudioManager.play_click)
+	highlighter_option.pressed.connect(_on_option_pressed)
+	highlighter_option.item_selected.connect(_on_highlighter_selected)
+
+	credits_button.pressed.connect(_on_credits_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 
-	# Surligneur (style « focus ») sur l'élément survolé par la souris
-	for control in [track_option, back_button]:
-		control.mouse_entered.connect(control.grab_focus)
-		control.mouse_exited.connect(control.release_focus)
+	track_option.mouse_entered.connect(track_option.grab_focus)
+	track_option.mouse_exited.connect(track_option.release_focus)
+	highlighter_option.mouse_entered.connect(highlighter_option.grab_focus)
+	highlighter_option.mouse_exited.connect(highlighter_option.release_focus)
+	credits_button.mouse_entered.connect(credits_button.grab_focus)
+	credits_button.mouse_exited.connect(credits_button.release_focus)
+	back_button.mouse_entered.connect(back_button.grab_focus)
+	back_button.mouse_exited.connect(back_button.release_focus)
 
 
-func _setup_track_option() -> void:
+func setup_track_option() -> void:
 	for track in AudioManager.MUSIC_TRACKS:
-		track_option.add_item(track.name)
-
-	track_option.add_theme_icon_override("arrow", _create_arrow_icon())
-	track_option.add_theme_constant_override("arrow_margin", 36)  # l'ombre du papier occupe le bord droit
-
-	# La liste qui s'ouvre reprend le style de la page
-	var popup := track_option.get_popup()
-	for i in popup.item_count:
-		popup.set_item_as_radio_checkable(i, false)  # pas de puce devant les pistes
-	var font: Font = track_option.get_theme_font("font")
-	popup.add_theme_font_override("font", font)
-	popup.add_theme_font_size_override("font_size", 28)
-	popup.add_theme_color_override("font_color", INK)
-	popup.add_theme_color_override("font_hover_color", INK)
-	popup.add_theme_constant_override("v_separation", 16)
-	var panel := StyleBoxFlat.new()
-	panel.bg_color = PAPER
-	panel.set_border_width_all(3)
-	panel.border_color = INK
-	panel.set_content_margin_all(12)
-	popup.add_theme_stylebox_override("panel", panel)
-	var hover := StyleBoxFlat.new()
-	hover.bg_color = HIGHLIGHTER
-	popup.add_theme_stylebox_override("hover", hover)
+		track_option.add_item(track["name"])
+	remove_radio_marks(track_option)
 
 
-# Flèche pixel art (triangle pointant vers le bas)
-func _create_arrow_icon() -> ImageTexture:
-	var image := Image.create(20, 10, false, Image.FORMAT_RGBA8)
-	for y in 10:
-		for x in range(y, 20 - y):
-			image.set_pixel(x, y, INK)
-	return ImageTexture.create_from_image(image)
+func setup_highlighter_option() -> void:
+	for entry in Highlighter.COLORS:
+		var swatch: Texture2D = load(Highlighter.IMAGES_PATH + entry["folder"] + "/swatch.png")
+		highlighter_option.add_icon_item(swatch, entry["name"])
+	remove_radio_marks(highlighter_option)
+	highlighter_option.select(Highlighter.current_index)
 
 
-func _on_sfx_changed(value: float) -> void:
-	sfx_value.text = _format_value(value)
-	AudioManager.apply_volume("SFX", value)
-	save_settings()
+func remove_radio_marks(option: OptionButton) -> void:
+	var popup: PopupMenu = option.get_popup()
+	for i in range(popup.item_count):
+		popup.set_item_as_radio_checkable(i, false)
 
 
-func _on_music_changed(value: float) -> void:
-	music_value.text = _format_value(value)
-	AudioManager.apply_volume("Music", value)
-	save_settings()
+func update_highlighter() -> void:
+	var color: Color = Highlighter.get_color()
+	Highlighter.apply(self)
+
+	var popup_hover_box: StyleBoxFlat = theme.get_stylebox("hover", "PopupMenu") as StyleBoxFlat
+	popup_hover_box.bg_color = Color(color, HIGHLIGHTER_ALPHA)
+
+	var grabber_area: StyleBoxFlat = sfx_slider.get_theme_stylebox("grabber_area") as StyleBoxFlat
+	var grabber_area_highlight: StyleBoxFlat = sfx_slider.get_theme_stylebox("grabber_area_highlight") as StyleBoxFlat
+	grabber_area.bg_color = color
+	grabber_area_highlight.bg_color = color.lightened(0.35)
+
+	var grabber: Texture2D = Highlighter.get_image("slider_grabber.png")
+	var grabber_hover: Texture2D = Highlighter.get_image("slider_grabber_hover.png")
+	sfx_slider.add_theme_icon_override("grabber", grabber)
+	sfx_slider.add_theme_icon_override("grabber_highlight", grabber_hover)
+	music_slider.add_theme_icon_override("grabber", grabber)
+	music_slider.add_theme_icon_override("grabber_highlight", grabber_hover)
+
+
+func format_value(value: float) -> String:
+	return str(int(value)) + "%"
+
+
+func load_settings() -> void:
+	sfx_slider.value = AudioManager.sfx_volume
+	music_slider.value = AudioManager.music_volume
+	sfx_value.text = format_value(AudioManager.sfx_volume)
+	music_value.text = format_value(AudioManager.music_volume)
+	track_option.select(AudioManager.current_track_index)
+
+
+func _on_sfx_slider_changed(value: float) -> void:
+	sfx_value.text = format_value(value)
+	AudioManager.set_sfx_volume(value)
+
+
+func _on_sfx_slider_drag_ended(_value_changed: bool) -> void:
+	AudioManager.play_click()
+
+
+func _on_music_slider_changed(value: float) -> void:
+	music_value.text = format_value(value)
+	AudioManager.set_music_volume(value)
+
+
+func _on_option_pressed() -> void:
+	AudioManager.play_click()
 
 
 func _on_track_selected(index: int) -> void:
 	AudioManager.play_click()
 	AudioManager.play_track(index)
-	save_settings()
+
+
+func _on_highlighter_selected(index: int) -> void:
+	AudioManager.play_click()
+	Highlighter.current_index = index
+	update_highlighter()
 
 
 func _on_back_pressed() -> void:
@@ -96,27 +128,6 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file(MAIN_MENU_PATH)
 
 
-func save_settings() -> void:
-	var config := ConfigFile.new()
-	config.set_value("audio", "sfx", sfx_slider.value)
-	config.set_value("audio", "music", music_slider.value)
-	config.set_value("audio", "track", AudioManager.current_track_index)
-	config.save(SAVE_PATH)
-
-
-func load_settings() -> void:
-	var config := ConfigFile.new()
-	var sfx := 90.0
-	var music := 80.0
-	if config.load(SAVE_PATH) == OK:
-		sfx = config.get_value("audio", "sfx", sfx)
-		music = config.get_value("audio", "music", music)
-	sfx_slider.value = sfx
-	music_slider.value = music
-	sfx_value.text = _format_value(sfx)
-	music_value.text = _format_value(music)
-	track_option.select(AudioManager.current_track_index)
-
-
-func _format_value(value: float) -> String:
-	return "%d%%" % int(value)
+func _on_credits_pressed() -> void:
+	AudioManager.play_click()
+	get_tree().change_scene_to_file(CREDITS_PATH)

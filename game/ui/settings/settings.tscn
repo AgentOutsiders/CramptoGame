@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://bu45ty0t5dnf8"]
 
-[ext_resource type="Texture2D" uid="uid://dq3v1q31n23df" path="res://assets/landscape/landscape3.jpg" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://dq3v1q31n23df" path="res://assets/landscape/landscape1.jpg" id="1_bg"]
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="2_hrs25"]
 [ext_resource type="Script" uid="uid://iupxkhk4qmub" path="res://ui/settings/settings.gd" id="3_set01"]
 [ext_resource type="Texture2D" path="res://assets/ui/menu/settings_title.png" id="4_title"]
 [ext_resource type="Texture2D" path="res://assets/ui/menu/settings_page.png" id="4_page"]
 [ext_resource type="Texture2D" path="res://assets/ui/menu/settings_back.png" id="4_back"]
-[ext_resource type="Texture2D" path="res://assets/ui/menu/settings_back_highlight.png" id="4_back_hl"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/settings_back_highlight.png" id="4_back_hl"]
 [ext_resource type="Texture2D" path="res://assets/ui/menu/settings_option.png" id="4_option"]
-[ext_resource type="Texture2D" path="res://assets/ui/menu/settings_option_highlight.png" id="4_option_hl"]
-[ext_resource type="Texture2D" path="res://assets/ui/menu/slider_grabber.png" id="4_grabber"]
-[ext_resource type="Texture2D" path="res://assets/ui/menu/slider_grabber_hover.png" id="4_grabber_hl"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/settings_option_highlight.png" id="4_option_hl"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/slider_grabber.png" id="4_grabber"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/slider_grabber_hover.png" id="4_grabber_hl"]
+[ext_resource type="Theme" path="res://ui/settings/option_theme.tres" id="5_theme"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_title"]
 content_margin_right = 8.0
@@ -54,8 +55,6 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.11, 0.14, 0.3, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_option"]
 content_margin_left = 72.0
 content_margin_right = 8.0
@@ -94,6 +93,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_theme")
 script = ExtResource("3_set01")
 
 [node name="Background" type="TextureRect" parent="." unique_id=845654148]
@@ -118,7 +118,7 @@ grow_vertical = 2
 
 [node name="MainContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1600000001]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 0
 
 [node name="TitlePanel" type="PanelContainer" parent="CenterContainer/MainContainer" unique_id=1600000002]
 custom_minimum_size = Vector2(1080, 184)
@@ -135,15 +135,19 @@ text = "Paramètres du jeu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TitleSpacer" type="Control" parent="CenterContainer/MainContainer" unique_id=1600000006]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
 [node name="Panel" type="PanelContainer" parent="CenterContainer/MainContainer" unique_id=1600000004]
-custom_minimum_size = Vector2(1200, 404)
+custom_minimum_size = Vector2(1200, 544)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_page")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContainer/Panel" unique_id=364094698]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 25
 alignment = 1
 
 [node name="SfxRow" type="HBoxContainer" parent="CenterContainer/MainContainer/Panel/VBoxContainer" unique_id=1130794005]
@@ -250,11 +254,82 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_option")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_option_pressed")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_option_pressed")
 
+[node name="HighlighterRow" type="HBoxContainer" parent="CenterContainer/MainContainer/Panel/VBoxContainer" unique_id=1700000031]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Name" type="Label" parent="CenterContainer/MainContainer/Panel/VBoxContainer/HighlighterRow" unique_id=1700000032]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_hrs25")
+theme_override_font_sizes/font_size = 32
+text = "Surligneur"
+vertical_alignment = 1
+
+[node name="HighlighterOption" type="OptionButton" parent="CenterContainer/MainContainer/Panel/VBoxContainer/HighlighterRow" unique_id=1700000033]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(520, 88)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_hrs25")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_option_hl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_option")
+theme_override_styles/hover = SubResource("StyleBoxTexture_option")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_option_pressed")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_option_pressed")
+
+[node name="CreditsRow" type="HBoxContainer" parent="CenterContainer/MainContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Name" type="Label" parent="CenterContainer/MainContainer/Panel/VBoxContainer/CreditsRow"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_hrs25")
+theme_override_font_sizes/font_size = 32
+text = "Crédits"
+vertical_alignment = 1
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/MainContainer/Panel/VBoxContainer/CreditsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(520, 88)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_hrs25")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_option_hl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_option")
+theme_override_styles/hover = SubResource("StyleBoxTexture_option")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_option_pressed")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_option_pressed")
+text = "Voir"
+alignment = 0
+
 [node name="BackSpacer" type="Control" parent="CenterContainer/MainContainer" unique_id=1600000005]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="CenterContainer/MainContainer" unique_id=594830011]
+[node name="BottomRow" type="HBoxContainer" parent="CenterContainer/MainContainer" unique_id=1600000007]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="BackButton" type="Button" parent="CenterContainer/MainContainer/BottomRow" unique_id=594830011]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(680, 112)
 layout_mode = 2

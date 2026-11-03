@@ -13,7 +13,7 @@ config_version=5
 config/name="CramptoGame"
 run/main_scene="uid://bui2h6utje834"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/test/icon.svg"
 
 [audio]
 
@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://co01pltw7xooy"
 
 GameManager="*uid://d2ylp4qstmet2"
 AudioManager="*uid://bexysjcsfs7b8"
+Highlighter="*res://core/autoload/highlighter.gd"
 
 [display]
 

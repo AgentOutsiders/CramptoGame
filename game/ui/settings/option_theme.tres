@@ -1,0 +1,32 @@
+[gd_resource type="Theme" load_steps=5 format=3]
+
+[ext_resource type="FontFile" path="res://assets/font/PixelOperator8.ttf" id="1_font"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/option_arrow.png" id="2_arrow"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.965, 0.95, 0.9, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.11, 0.14, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.35, 0.78, 1, 0.7)
+
+[resource]
+OptionButton/constants/arrow_margin = 36
+OptionButton/constants/h_separation = 16
+OptionButton/icons/arrow = ExtResource("2_arrow")
+PopupMenu/colors/font_color = Color(0.11, 0.14, 0.3, 1)
+PopupMenu/colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+PopupMenu/constants/h_separation = 16
+PopupMenu/constants/v_separation = 16
+PopupMenu/font_sizes/font_size = 28
+PopupMenu/fonts/font = ExtResource("1_font")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_hover")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_panel")
