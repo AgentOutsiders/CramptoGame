@@ -141,7 +141,6 @@ func build_thumbnails() -> void:
 		button.icon = scale_texture(character.portrait, THUMBNAIL_ZOOM)
 		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		button.custom_minimum_size = THUMBNAIL_SIZE
-		button.tooltip_text = character.character_name
 		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 		var paper_number: int = i % THUMBNAIL_COUNT + 1
