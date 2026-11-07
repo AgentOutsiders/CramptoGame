@@ -10,8 +10,8 @@ enum Type {
 	LEISURE
 }
 
-# nom de la stat tel qu'il est affiché au joueur
-# static : appelable directement depuis la classe, sans créer d'instance (StatType.display_name(...))
+# name of the stat as shown to the player
+# static: can be called directly on the class, without creating an instance (StatType.display_name(...))
 static func display_name(type: Type) -> String:
 	match type:
 		Type.SCIENTIFIC:
@@ -30,6 +30,6 @@ static func display_name(type: Type) -> String:
 			return "Loisirs"
 	return ""
 
-# les multiplicateurs utilisent _multiplier_bonus, les autres stats (jauges) utilisent _flat_bonus
+# multipliers use _multiplier_bonus, the other stats (gauges) use _flat_bonus
 static func is_multiplier(type: Type) -> bool:
 	return type in [Type.METHODOLOGY, Type.ATTENDANCE, Type.SLEEP]

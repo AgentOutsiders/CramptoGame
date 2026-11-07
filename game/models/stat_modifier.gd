@@ -14,10 +14,10 @@ func get_flat_bonus() -> int:
 func get_multiplier_bonus() -> float:
 	return _multiplier_bonus
 
-# texte affiché dans les popups, ex : "Scientifique : +10" ou "Sommeil : +0,80"
+# text shown in the popups, e.g. "Science : +10" or "Sommeil : +0,80"
 func display_text() -> String:
 	var stat_name: String = StatType.display_name(_stat_type)
 	if StatType.is_multiplier(_stat_type):
-		# %.2f écrit un point, on le remplace par une virgule pour l'affichage en français
+		# %.2f writes a dot, replaced by a comma for the French display
 		return "%s : %s" % [stat_name, ("%+.2f" % _multiplier_bonus).replace(".", ",")]
 	return "%s : %+d" % [stat_name, _flat_bonus]

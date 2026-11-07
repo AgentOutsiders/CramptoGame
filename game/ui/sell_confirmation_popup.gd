@@ -5,7 +5,7 @@ signal sell_confirmed(item: Item, quantity: int)
 
 var _item: Item
 var _quantity: int = 1
-# nombre d'exemplaires possédés : on ne peut pas en vendre plus
+# number of copies owned: you cannot sell more than that
 var _owned_amount: int = 0
 @onready var _title_label: Label = $ContentVBox/TitleLabel
 @onready var _description_label: Label = $ContentVBox/DescriptionLabel
@@ -16,12 +16,12 @@ var _owned_amount: int = 0
 @onready var _down_arrow_button: Button = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox/DownArrowButton
 @onready var _sell_button: Button = $ContentVBox/BottomHBox/DetailsVBox/ActionsHBox/SellButton
 @onready var _cancel_button: Button = $ContentVBox/BottomHBox/DetailsVBox/ActionsHBox/CancelButton
-# récap des stats en bas à droite : copie des stats du shop, avec l'aperçu de la vente qui clignote
+# stats recap at the bottom right: copy of the shop's stats, with the sale preview blinking
 @onready var _stats_informations: Informations = $ContentVBox/BottomHBox/StatsPanel/StatsInformations
 
 
-# owned_amount : nombre d'exemplaires de l'item possédés
-# current_stats : le panneau de stats du shop, recopié dans le récap du popup
+# owned_amount: number of copies of the item owned
+# current_stats: the shop's stats panel, copied into the popup's recap
 func show_item(item: Item, owned_amount: int, current_stats: Informations) -> void:
 	_item = item
 	_owned_amount = owned_amount
@@ -29,7 +29,7 @@ func show_item(item: Item, owned_amount: int, current_stats: Informations) -> vo
 	_sell_button.disabled = _owned_amount == 0
 	_title_label.text = item.get_item_name()
 	_description_label.text = item.get_display_description()
-	# sans description, le label est caché : il ne prend plus de place et le titre se recentre tout seul
+	# without a description, the label is hidden: it takes no space and the title recenters by itself
 	_description_label.visible = _description_label.text != ""
 
 	var bonuses_text: String = ""
@@ -46,14 +46,14 @@ func _ready() -> void:
 	_cancel_button.pressed.connect(_on_cancel_pressed)
 	_up_arrow_button.pressed.connect(_on_up_arrow_pressed)
 	_down_arrow_button.pressed.connect(_on_down_arrow_pressed)
-	#popup_hide = signal de la classe Popup, déclenché aussi quand on clique en dehors
+	# popup_hide = signal of the Popup class, also fired when clicking outside
 	popup_hide.connect(_on_popup_hide)
 
-# affiche la quantité et met à jour l'aperçu des stats en fonction d'elle
-# (quantité négative : l'aperçu montre ce qui sera perdu, en rouge)
+# shows the quantity and updates the stats preview according to it
+# (negative quantity: the preview shows what will be lost, in red)
 func _update_quantity() -> void:
 	_quantity_label.text = str(_quantity)
-	# argent rendu pour la quantité choisie (même calcul que dans le shop)
+	# money given back for the chosen quantity (same calculation as in the shop)
 	var sell_total: int = _quantity * int(_item.get_sell_price())
 	_owned_amount_label.text = "Possédé : %d\nRevente : %d $" % [_owned_amount, sell_total]
 	_stats_informations.show_preview(_item.get_stat_modifiers(), -_quantity)
@@ -66,11 +66,11 @@ func _on_cancel_pressed() -> void:
 	hide()
 
 func _on_popup_hide() -> void:
-	# arrête le clignotement tant que le popup est fermé
+	# stops the blinking while the popup is closed
 	_stats_informations.clear_preview()
 
 func _on_up_arrow_pressed() -> void:
-	# on ne peut pas vendre plus que ce qu'on possède
+	# you cannot sell more than what you own
 	_quantity = min(_owned_amount, _quantity + 1)
 	_update_quantity()
 

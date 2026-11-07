@@ -13,7 +13,7 @@ signal sell_confirmed(item: Item, quantity: int)
 
 func _ready() -> void:
 	gui_input.connect(_on_gui_input)
-	# on relaie le signal du popup vers le shop, qui est le seul à connaître l'argent
+	# forwards the popup's signal to the shop, which is the only one that knows the money
 	_sell_confirmation_popup.sell_confirmed.connect(sell_confirmed.emit)
 	
 func setup(item: Item) -> void:
@@ -25,13 +25,13 @@ func set_amount(amount : int) -> void:
 	_amount = amount
 	_amount_label.text = "x%d" % amount
 
-#Le signal gui_input de Control se déclenche pour chaque événement souris reçu
+# The gui_input signal of Control fires for each mouse event received
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		slot_clicked.emit(_item)
 		
-# appelé par le shop au clic sur le slot
-# current_stats : le panneau de stats du shop, affiché en récap dans le popup
+# called by the shop when the slot is clicked
+# current_stats: the shop's stats panel, shown as a recap in the popup
 func open_sell_popup(current_stats: Informations) -> void:
 	_sell_confirmation_popup.show_item(_item, _amount, current_stats)
 	

@@ -1,29 +1,29 @@
 extends VBoxContainer
 class_name Informations
 
-# les jauges vont de 0 à 100, les multiplicateurs de MIN_MULTIPLIER à MAX_MULTIPLIER
+# gauges go from 0 to 100, multipliers from MIN_MULTIPLIER to MAX_MULTIPLIER
 const MIN_MULTIPLIER: float = 0.5
 const MAX_MULTIPLIER: float = 2.0
-# durée d'un aller (ou d'un retour) du clignotement de l'aperçu
+# duration of one way (or the way back) of the preview blinking
 const PREVIEW_BLINK_DURATION: float = 0.5
-# couleur de la partie d'une jauge qui sera perdue (aperçu d'une vente)
+# color of the part of a gauge that will be lost (sale preview)
 const PREVIEW_LOSS_COLOR: Color = Color(0.9, 0.2, 0.2)
 
 @export var _bar_animation_duration: float = 0.4
-# Largeur minimale des labels de valeur (0 = pas de minimum).
-# Dans les popups, on la règle dans l'inspecteur pour que "100 → 100" tienne :
-# le panneau ne change alors pas de taille pendant l'aperçu.
+# Minimum width of the value labels (0 = no minimum).
+# In the popups, it is set in the inspector so that "100 → 100" fits:
+# the panel then keeps the same size during the preview.
 @export var _percent_label_min_width: float = 0
 @export var _multiplier_label_min_width: float = 0
 
-# jauge de chaque stat
+# gauge of each stat
 @onready var _bars: Dictionary = {
 	StatType.Type.SCIENTIFIC: $StatsVBox/StatsGrid/ScienceProgressBar,
 	StatType.Type.LITERATURE: $StatsVBox/StatsGrid/LiteratureProgressBar,
 	StatType.Type.SOCIAL_LIFE: $StatsVBox/StatsGrid/SocialLifeProgressBar,
 	StatType.Type.LEISURE: $StatsVBox/StatsGrid/HobbyProgressBar,
 }
-# label qui affiche la valeur de chaque stat (jauges et multiplicateurs)
+# label that shows the value of each stat (gauges and multipliers)
 @onready var _labels: Dictionary = {
 	StatType.Type.SCIENTIFIC: $StatsVBox/StatsGrid/SciencePercentLabel,
 	StatType.Type.LITERATURE: $StatsVBox/StatsGrid/LiteraturePercentLabel,
@@ -34,9 +34,9 @@ const PREVIEW_LOSS_COLOR: Color = Color(0.9, 0.2, 0.2)
 	StatType.Type.SLEEP: $MultipliersVBox/MultipliersGrid/SleepValueLabel,
 }
 
-# valeur de chaque stat : StatType.Type -> float
+# value of each stat: StatType.Type -> float
 var _values: Dictionary = {}
-# animations et jauges de fond créées pour l'aperçu, supprimées quand on l'efface
+# animations and background gauges created for the preview, removed when it is cleared
 var _preview_tweens: Array[Tween] = []
 var _preview_bars: Array[ProgressBar] = []
 
@@ -46,7 +46,7 @@ func _ready() -> void:
 			_labels[type].custom_minimum_size.x = _multiplier_label_min_width
 		else:
 			_labels[type].custom_minimum_size.x = _percent_label_min_width
-	# valeurs de test, remplacées par celles du joueur avec set_values() (voir Shop.setup())
+	# test values, replaced by the player's values with set_values() (see Shop.setup())
 	set_stats(65, 40, 80, 25)
 	set_multipliers(1.2, 0.8, 1.5)
 
@@ -63,43 +63,43 @@ func set_multipliers(methodology: float, attendance: float, sleep: float) -> voi
 	_values[StatType.Type.SLEEP] = clampf(sleep, MIN_MULTIPLIER, MAX_MULTIPLIER)
 	_update_multipliers()
 
-# remplace les valeurs des stats données : StatType.Type -> valeur
+# replaces the values of the given stats: StatType.Type -> value
 func set_values(values: Dictionary) -> void:
 	for type in values:
 		_values[type] = values[type]
 	_update_bars()
 	_update_multipliers()
 
-# valeur actuelle d'une stat (jauge ou multiplicateur)
+# current value of a stat (gauge or multiplier)
 func get_stat(type: StatType.Type) -> float:
 	return _values[type]
 
-# Ajoute amount à la jauge de la stat (une valeur négative la fait baisser), avec une animation
+# Adds amount to the stat's gauge (a negative value lowers it), with an animation
 func add_stat(type: StatType.Type, amount: float) -> void:
 	if not _bars.has(type):
-		# les autres stats sont des multiplicateurs, elles n'ont pas de jauge
+		# the other stats are multipliers, they have no gauge
 		return
 	_values[type] = clampf(_values[type] + amount, 0, 100)
 	_labels[type].text = "%d" % _values[type]
 	var tween: Tween = create_tween()
 	tween.tween_property(_bars[type], "value", _values[type], _bar_animation_duration)
 
-# Ajoute amount au multiplicateur de la stat (une valeur négative le fait baisser)
+# Adds amount to the stat's multiplier (a negative value lowers it)
 func add_multiplier(type: StatType.Type, amount: float) -> void:
 	if not StatType.is_multiplier(type):
-		# les autres stats ont une jauge, pas de multiplicateur
+		# the other stats have a gauge, not a multiplier
 		return
 	_values[type] = clampf(_values[type] + amount, MIN_MULTIPLIER, MAX_MULTIPLIER)
 	_update_multipliers()
 
-# recopie toutes les valeurs d'un autre panneau (ex : celui du shop vers celui d'un popup)
+# copies all the values of another panel (e.g. the shop's one into a popup's one)
 func copy_from(other: Informations) -> void:
 	for type in _values:
 		_values[type] = other.get_stat(type)
 	clear_preview()
 
-# Montre ce que count exemplaires de l'item changeraient, sans rien modifier pour de vrai.
-# count est négatif pour une vente.
+# Shows what count copies of the item would change, without really changing anything.
+# count is negative for a sale.
 func show_preview(modifiers: Array[StatModifier], count: int) -> void:
 	clear_preview()
 	for modifier in modifiers:
@@ -109,7 +109,7 @@ func show_preview(modifiers: Array[StatModifier], count: int) -> void:
 		else:
 			_preview_bar(type, modifier.get_flat_bonus() * count)
 
-# arrête l'aperçu et réaffiche les vraies valeurs
+# stops the preview and shows the real values again
 func clear_preview() -> void:
 	for tween in _preview_tweens:
 		tween.kill()
@@ -120,8 +120,8 @@ func clear_preview() -> void:
 	_update_bars()
 	_update_multipliers()
 
-# Aperçu d'une jauge : la jauge affiche la plus petite des deux valeurs, et une 2e jauge
-# dessinée derrière elle affiche la plus grande. Seule la différence dépasse, et elle clignote.
+# Gauge preview: the gauge shows the smaller of the two values, and a 2nd gauge
+# drawn behind it shows the bigger one. Only the difference sticks out, and it blinks.
 func _preview_bar(type: StatType.Type, amount: float) -> void:
 	var current: float = _values[type]
 	var target: float = clampf(current + amount, 0, 100)
@@ -135,27 +135,27 @@ func _preview_bar(type: StatType.Type, amount: float) -> void:
 	var preview_bar: ProgressBar = ProgressBar.new()
 	preview_bar.value = max(current, target)
 	preview_bar.show_percentage = false
-	# show_behind_parent : la 2e jauge est dessinée derrière la vraie, pas par-dessus
+	# show_behind_parent: the 2nd gauge is drawn behind the real one, not on top of it
 	preview_bar.show_behind_parent = true
-	# pas de fond, sinon il cacherait la vraie jauge
+	# no background, otherwise it would hide the real gauge
 	preview_bar.add_theme_stylebox_override("background", StyleBoxEmpty.new())
-	# même remplissage que la vraie jauge (copié avec duplicate), en rouge si c'est une perte
+	# same fill as the real gauge (copied with duplicate), red if it is a loss
 	var fill: StyleBoxFlat = bar.get_theme_stylebox("fill").duplicate()
 	if target < current:
 		fill.bg_color = PREVIEW_LOSS_COLOR
 	preview_bar.add_theme_stylebox_override("fill", fill)
 	bar.add_child(preview_bar)
-	# la 2e jauge prend exactement la taille de la vraie
+	# the 2nd gauge takes exactly the size of the real one
 	preview_bar.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_preview_bars.append(preview_bar)
 
-	# modulate:a = opacité de la 2e jauge, elle passe de 1 à 0.2 puis revient à 1, en boucle
+	# modulate:a = opacity of the 2nd gauge, it goes from 1 to 0.2 then back to 1, in a loop
 	var tween: Tween = create_tween().set_loops()
 	tween.tween_property(preview_bar, "modulate:a", 0.2, PREVIEW_BLINK_DURATION)
 	tween.tween_property(preview_bar, "modulate:a", 1.0, PREVIEW_BLINK_DURATION)
 	_preview_tweens.append(tween)
 
-# Aperçu d'un multiplicateur : le label affiche "avant → après" et clignote
+# Multiplier preview: the label shows "before → after" and blinks
 func _preview_multiplier(type: StatType.Type, amount: float) -> void:
 	var current: float = _values[type]
 	var target: float = clampf(current + amount, MIN_MULTIPLIER, MAX_MULTIPLIER)
@@ -163,24 +163,24 @@ func _preview_multiplier(type: StatType.Type, amount: float) -> void:
 		return
 	_labels[type].text = "%s → %s" % [_format_multiplier(current), _format_multiplier(target)]
 
-	# modulate:a = opacité du label, elle passe de 1 à 0.2 puis revient à 1, en boucle
+	# modulate:a = opacity of the label, it goes from 1 to 0.2 then back to 1, in a loop
 	var tween: Tween = create_tween().set_loops()
 	tween.tween_property(_labels[type], "modulate:a", 0.2, PREVIEW_BLINK_DURATION)
 	tween.tween_property(_labels[type], "modulate:a", 1.0, PREVIEW_BLINK_DURATION)
 	_preview_tweens.append(tween)
 
-# affiche la valeur de chaque jauge, sans animation
+# shows the value of each gauge, without animation
 func _update_bars() -> void:
 	for type in _bars:
 		_bars[type].value = _values[type]
 		_labels[type].text = "%d" % _values[type]
 
-# affiche la valeur de chaque multiplicateur
+# shows the value of each multiplier
 func _update_multipliers() -> void:
 	for type in [StatType.Type.METHODOLOGY, StatType.Type.ATTENDANCE, StatType.Type.SLEEP]:
 		_labels[type].text = _format_multiplier(_values[type])
 		_labels[type].modulate.a = 1.0
 
-# ex : 1.2 -> "x1,20" (%.2f écrit un point, on le remplace par une virgule pour l'affichage en français)
+# e.g. 1.2 -> "x1,20" (%.2f writes a dot, replaced by a comma for the French display)
 func _format_multiplier(value: float) -> String:
 	return ("x%.2f" % value).replace(".", ",")

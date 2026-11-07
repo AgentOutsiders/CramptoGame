@@ -8,11 +8,11 @@ class_name Item
 @export var _stat_modifiers : Array[StatModifier] = []
 @export var _description : String = ""
 @export var _max_owned : int = 0
-# true si l'item pourra servir lors de certains évènements du jeu
+# true if the item can be useful during some game events
 @export var _can_be_used_in_events : bool = false
 
 const EVENT_DESCRIPTION: String = "Cet item pourra vous être utile lors de certains évènements..."
-# un objet revendu rapporte 65 % de son prix d'achat
+# a sold item gives back 65% of its purchase price
 const SELL_PRICE_RATIO: float = 0.65
 
 func get_item_name() -> String:
@@ -21,7 +21,7 @@ func get_item_name() -> String:
 func get_price() -> float:
 	return _price
 
-# prix que rapporte la revente d'un exemplaire
+# money given back when selling one copy
 func get_sell_price() -> float:
 	return _price * SELL_PRICE_RATIO
 
@@ -43,7 +43,7 @@ func get_max_owned() -> int:
 func can_be_used_in_events() -> bool:
 	return _can_be_used_in_events
 
-# description affichée au joueur : celle des évènements si l'item peut y servir, sinon aucune
+# description shown to the player: the event one if the item can be used in events, otherwise none
 func get_display_description() -> String:
 	if _can_be_used_in_events:
 		return EVENT_DESCRIPTION
