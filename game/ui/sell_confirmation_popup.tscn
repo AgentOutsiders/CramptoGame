@@ -95,7 +95,7 @@ theme_override_fonts/font = ExtResource("2_3dnf7")
 theme_override_font_sizes/font_size = 28
 autowrap_mode = 3
 
-[node name="MaxQuantityLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1286023417]
+[node name="OwnedAmountLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1286023417]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3325664, 0.57784474, 0.19780755, 1)

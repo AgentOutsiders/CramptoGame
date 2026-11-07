@@ -10,7 +10,7 @@ var _owned_amount: int = 0
 @onready var _title_label: Label = $ContentVBox/TitleLabel
 @onready var _description_label: Label = $ContentVBox/DescriptionLabel
 @onready var _bonuses_label: Label = $ContentVBox/BottomHBox/DetailsVBox/BonusesLabel
-@onready var _max_quantity_label: Label = $ContentVBox/BottomHBox/DetailsVBox/MaxQuantityLabel
+@onready var _owned_amount_label: Label = $ContentVBox/BottomHBox/DetailsVBox/OwnedAmountLabel
 @onready var _quantity_label: Label = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/QuantityLabel
 @onready var _up_arrow_button: Button = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox/UpArrowButton
 @onready var _down_arrow_button: Button = $ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox/DownArrowButton
@@ -36,7 +36,6 @@ func show_item(item: Item, owned_amount: int, current_stats: Informations) -> vo
 	for modifier in item.get_stat_modifiers():
 		bonuses_text += modifier.display_text() + "\n"
 	_bonuses_label.text = bonuses_text.strip_edges()
-	_max_quantity_label.text = "Possédé : %d" % owned_amount
 
 	_stats_informations.copy_from(current_stats)
 	_update_quantity()
@@ -54,6 +53,9 @@ func _ready() -> void:
 # (quantité négative : l'aperçu montre ce qui sera perdu, en rouge)
 func _update_quantity() -> void:
 	_quantity_label.text = str(_quantity)
+	# argent rendu pour la quantité choisie (même calcul que dans le shop)
+	var sell_total: int = _quantity * int(_item.get_sell_price())
+	_owned_amount_label.text = "Possédé : %d\nRevente : %d $" % [_owned_amount, sell_total]
 	_stats_informations.show_preview(_item.get_stat_modifiers(), -_quantity)
 
 func _on_confirm_pressed() -> void:

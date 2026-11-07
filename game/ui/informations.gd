@@ -46,7 +46,7 @@ func _ready() -> void:
 			_labels[type].custom_minimum_size.x = _multiplier_label_min_width
 		else:
 			_labels[type].custom_minimum_size.x = _percent_label_min_width
-	# TODO : récupérer les valeurs depuis le personnage (valeurs en dur pour le test)
+	# valeurs de test, remplacées par celles du joueur avec set_values() (voir Shop.setup())
 	set_stats(65, 40, 80, 25)
 	set_multipliers(1.2, 0.8, 1.5)
 
@@ -61,6 +61,13 @@ func set_multipliers(methodology: float, attendance: float, sleep: float) -> voi
 	_values[StatType.Type.METHODOLOGY] = clampf(methodology, MIN_MULTIPLIER, MAX_MULTIPLIER)
 	_values[StatType.Type.ATTENDANCE] = clampf(attendance, MIN_MULTIPLIER, MAX_MULTIPLIER)
 	_values[StatType.Type.SLEEP] = clampf(sleep, MIN_MULTIPLIER, MAX_MULTIPLIER)
+	_update_multipliers()
+
+# remplace les valeurs des stats données : StatType.Type -> valeur
+func set_values(values: Dictionary) -> void:
+	for type in values:
+		_values[type] = values[type]
+	_update_bars()
 	_update_multipliers()
 
 # valeur actuelle d'une stat (jauge ou multiplicateur)

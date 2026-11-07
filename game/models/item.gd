@@ -12,13 +12,18 @@ class_name Item
 @export var _can_be_used_in_events : bool = false
 
 const EVENT_DESCRIPTION: String = "Cet item pourra vous être utile lors de certains évènements..."
+# un objet revendu rapporte 65 % de son prix d'achat
+const SELL_PRICE_RATIO: float = 0.65
 
-# pas get_name() : ce nom existe déjà dans Resource (getter de resource_name)
 func get_item_name() -> String:
 	return _name
 
 func get_price() -> float:
 	return _price
+
+# prix que rapporte la revente d'un exemplaire
+func get_sell_price() -> float:
+	return _price * SELL_PRICE_RATIO
 
 func get_monthly_price() -> float:
 	return _monthly_price
@@ -35,7 +40,6 @@ func get_description() -> String:
 func get_max_owned() -> int:
 	return _max_owned
 
-# booléen : nommé comme une question, comme la variable (can_)
 func can_be_used_in_events() -> bool:
 	return _can_be_used_in_events
 
