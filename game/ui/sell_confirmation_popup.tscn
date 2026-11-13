@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://dma1u4yvsvq31"]
+
+[ext_resource type="Script" uid="uid://b3abi0i478u8f" path="res://ui/sell_confirmation_popup.gd" id="1_srr8h"]
+[ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="2_3dnf7"]
+[ext_resource type="Texture2D" uid="uid://bvul3h8i7naau" path="res://assets/test/up_arrow.png" id="3_uxxmp"]
+[ext_resource type="Texture2D" uid="uid://b8vvfebi2q03p" path="res://assets/test/down_arrow.png" id="4_abdc7"]
+[ext_resource type="Texture2D" uid="uid://deay30qx3500c" path="res://assets/test/purchase_popup_bg.png" id="5_popupbg"]
+[ext_resource type="PackedScene" uid="uid://4h0gs67m0aiv" path="res://ui/informations.tscn" id="6_infos"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_popupbg"]
+content_margin_left = 233.0
+content_margin_top = 67.0
+content_margin_right = 83.0
+content_margin_bottom = 83.0
+texture = ExtResource("5_popupbg")
+
+[sub_resource type="Theme" id="Theme_popuptext"]
+Label/colors/font_color = Color(0.2, 0.15, 0.1, 1)
+
+[sub_resource type="Theme" id="Theme_statspanel"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_statspanel"]
+content_margin_left = 15.0
+content_margin_top = 20.0
+content_margin_right = 15.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0, 0.75)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="SellConfirmationPopup" type="PopupPanel" unique_id=1686505149]
+oversampling_override = 1.0
+size = Vector2i(1500, 1000)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_popupbg")
+script = ExtResource("1_srr8h")
+
+[node name="ContentVBox" type="VBoxContainer" parent="." unique_id=296544769]
+offset_left = 233.0
+offset_top = 67.0
+offset_right = 1417.0
+offset_bottom = 917.0
+theme = SubResource("Theme_popuptext")
+theme_override_constants/separation = 20
+
+[node name="TopSpacerControl" type="Control" parent="ContentVBox" unique_id=1418865093]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="ContentVBox" unique_id=1327505411]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6313726, 0.31764707, 0.101960786, 1)
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="ContentVBox" unique_id=1963724681]
+custom_minimum_size = Vector2(1100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66665715, 0.32319716, 0.5058116, 1)
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MiddleSpacerControl" type="Control" parent="ContentVBox" unique_id=1730562284]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="BottomHBox" type="HBoxContainer" parent="ContentVBox" unique_id=1093847261]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DetailsVBox" type="VBoxContainer" parent="ContentVBox/BottomHBox" unique_id=884213570]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="BonusesTitleLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1720094418]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6313726, 0.31764707, 0.101960786, 1)
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+text = "Ce que cet objet apporte :"
+autowrap_mode = 3
+
+[node name="BonusesLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1556207734]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+autowrap_mode = 3
+
+[node name="OwnedAmountLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1286023417]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3325664, 0.57784474, 0.19780755, 1)
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+autowrap_mode = 3
+
+[node name="SpacerControl" type="Control" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=640581927]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuantityHBox" type="HBoxContainer" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1177982356]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="QuantityTitleLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox" unique_id=1904436125]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+text = "Quantité :"
+vertical_alignment = 1
+
+[node name="QuantityLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox" unique_id=820850732]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ArrowsVBox" type="VBoxContainer" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox" unique_id=1481841949]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="UpArrowButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox" unique_id=1059017159]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+icon = ExtResource("3_uxxmp")
+expand_icon = true
+
+[node name="DownArrowButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox" unique_id=339619138]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+icon = ExtResource("4_abdc7")
+expand_icon = true
+
+[node name="ActionsHBox" type="HBoxContainer" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=312660369]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="SellButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/ActionsHBox" unique_id=1445378448]
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+text = "Vendre"
+
+[node name="CancelButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/ActionsHBox" unique_id=1489820492]
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3dnf7")
+theme_override_font_sizes/font_size = 28
+text = "Annuler"
+
+[node name="StatsPanel" type="PanelContainer" parent="ContentVBox/BottomHBox" unique_id=1367720985]
+layout_mode = 2
+theme = SubResource("Theme_statspanel")
+theme_override_styles/panel = SubResource("StyleBoxFlat_statspanel")
+
+[node name="StatsInformations" parent="ContentVBox/BottomHBox/StatsPanel" unique_id=571832209 instance=ExtResource("6_infos")]
+layout_mode = 2
+_percent_label_min_width = 200.0
+_multiplier_label_min_width = 284.0
+
+[node name="BottomSpacerControl" type="Control" parent="ContentVBox" unique_id=1592047716]
+layout_mode = 2
+size_flags_vertical = 3

@@ -32,6 +32,11 @@ window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[gui]
+
+timers/tooltip_delay_sec=0.1
+theme/custom="uid://dncjljt60rrui"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
