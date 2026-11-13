@@ -1,0 +1,326 @@
+[gd_scene format=3 uid="uid://dbkuaycd8yg83"]
+
+[ext_resource type="Script" uid="uid://c8jjtyqmugiep" path="res://ui/main/mode_select.gd" id="1_dmmho"]
+[ext_resource type="Texture2D" uid="uid://bt1dcjc81m8rt" path="res://assets/item/object1.png" id="2_obj2"]
+[ext_resource type="Texture2D" path="res://assets/item/object2.png" id="2_obj3"]
+[ext_resource type="Texture2D" uid="uid://dq3v1q31n23df" path="res://assets/landscape/landscape1.jpg" id="2_bg"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="3_cxk78"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/mode_title.png" id="4_mode_title"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/mode_card_1.png" id="4_mode_card_1"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/mode_card_2.png" id="4_mode_card_2"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/mode_choose_1.png" id="4_mode_choose_1"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/mode_choose_2.png" id="4_mode_choose_2"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/mode_choose_selected_1.png" id="4_mode_choose_selected_1"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/mode_choose_selected_2.png" id="4_mode_choose_selected_2"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/nav_back.png" id="4_nav_back"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/nav_back_highlight.png" id="4_nav_back_highlight"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/nav_confirm.png" id="4_nav_confirm"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/nav_confirm_highlight.png" id="4_nav_confirm_highlight"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_finite"]
+atlas = ExtResource("2_obj2")
+region = Rect2(86, 120, 410, 237)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_infinite"]
+atlas = ExtResource("2_obj3")
+region = Rect2(42, 12, 490, 464)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_title"]
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("4_mode_title")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_card1"]
+content_margin_left = 60.0
+content_margin_top = 32.0
+content_margin_right = 68.0
+content_margin_bottom = 40.0
+texture = ExtResource("4_mode_card_1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choose1"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_mode_choose_1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choose1_hover"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_mode_choose_1")
+modulate_color = Color(0.92, 0.92, 0.9, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choose1_selected"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_mode_choose_selected_1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_card2"]
+content_margin_left = 60.0
+content_margin_top = 32.0
+content_margin_right = 68.0
+content_margin_bottom = 40.0
+texture = ExtResource("4_mode_card_2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choose2"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_mode_choose_2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choose2_hover"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_mode_choose_2")
+modulate_color = Color(0.92, 0.92, 0.9, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choose2_selected"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_mode_choose_selected_2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_back"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_nav_back")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_back_pressed"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_nav_back")
+modulate_color = Color(0.85, 0.85, 0.82, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_back_hl"]
+texture = ExtResource("4_nav_back_highlight")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_confirm"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_nav_confirm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_confirm_pressed"]
+content_margin_right = 8.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_nav_confirm")
+modulate_color = Color(0.85, 0.85, 0.82, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_confirm_hl"]
+texture = ExtResource("4_nav_confirm_highlight")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="ModeControl" type="Control" unique_id=1528792517]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmmho")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1188725733]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=684598452]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1700000030]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="TitlePanel" type="PanelContainer" parent="CenterContainer/MainContainer" unique_id=1700000031]
+custom_minimum_size = Vector2(1080, 184)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_title")
+
+[node name="Title" type="Label" parent="CenterContainer/MainContainer/TitlePanel" unique_id=1700000032]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 56
+text = "Choisis ton mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MainContainer" unique_id=1814572416]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 120
+
+[node name="FiniteColumn" type="VBoxContainer" parent="CenterContainer/MainContainer/HBoxContainer" unique_id=1700000011]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="FinitePanel" type="PanelContainer" parent="CenterContainer/MainContainer/HBoxContainer/FiniteColumn" unique_id=1234498176]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 520)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_card1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContainer/HBoxContainer/FiniteColumn/FinitePanel" unique_id=1416985352]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="FiniteImage" type="TextureRect" parent="CenterContainer/MainContainer/HBoxContainer/FiniteColumn/FinitePanel/VBoxContainer" unique_id=1568790383]
+texture_filter = 2
+custom_minimum_size = Vector2(290, 230)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_finite")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FiniteLabel" type="Label" parent="CenterContainer/MainContainer/HBoxContainer/FiniteColumn/FinitePanel/VBoxContainer" unique_id=967814865]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 36
+text = "Mode fini"
+horizontal_alignment = 1
+
+[node name="FiniteButton" type="Button" parent="CenterContainer/MainContainer/HBoxContainer/FiniteColumn" unique_id=1826495883]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_choose1_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_choose1_selected")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_choose1_selected")
+theme_override_styles/normal = SubResource("StyleBoxTexture_choose1")
+toggle_mode = true
+text = "Choisir"
+
+[node name="InfiniteColumn" type="VBoxContainer" parent="CenterContainer/MainContainer/HBoxContainer" unique_id=1700000012]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="InfinitePanel" type="PanelContainer" parent="CenterContainer/MainContainer/HBoxContainer/InfiniteColumn" unique_id=599295634]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 520)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_card2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContainer/HBoxContainer/InfiniteColumn/InfinitePanel" unique_id=240267382]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="InfiniteImage" type="TextureRect" parent="CenterContainer/MainContainer/HBoxContainer/InfiniteColumn/InfinitePanel/VBoxContainer" unique_id=817752923]
+texture_filter = 2
+custom_minimum_size = Vector2(290, 230)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_infinite")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfiniteLabel" type="Label" parent="CenterContainer/MainContainer/HBoxContainer/InfiniteColumn/InfinitePanel/VBoxContainer" unique_id=589879503]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 36
+text = "Mode infini"
+horizontal_alignment = 1
+
+[node name="InfiniteButton" type="Button" parent="CenterContainer/MainContainer/HBoxContainer/InfiniteColumn" unique_id=855972660]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_choose2_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_choose2_selected")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_choose2_selected")
+theme_override_styles/normal = SubResource("StyleBoxTexture_choose2")
+toggle_mode = true
+text = "Choisir"
+
+[node name="BackButton" type="Button" parent="." unique_id=1700000001]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 88)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -128.0
+offset_right = 370.0
+offset_bottom = -40.0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_back_hl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_back")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_back_pressed")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_back_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_back")
+text = "Retour"
+
+[node name="ConfirmButton" type="Button" parent="." unique_id=1700000002]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 88)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -370.0
+offset_top = -128.0
+offset_right = -50.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("3_cxk78")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_confirm_hl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_confirm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_confirm_pressed")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_confirm_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_confirm")
+text = "Valider"

@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://bui2h6utje834"]
+
+[ext_resource type="Script" uid="uid://chnm4eorgdjl2" path="res://ui/main/main_menu.gd" id="1_ovrgc"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="1_xqga4"]
+[ext_resource type="Texture2D" uid="uid://dq3v1q31n23df" path="res://assets/landscape/landscape1.jpg" id="2_kjq2u"]
+[ext_resource type="Texture2D" uid="uid://sh6wisgod70p" path="res://assets/ui/menu/paper_strip_1.png" id="3_strip1"]
+[ext_resource type="Texture2D" uid="uid://kq00qutnrljj" path="res://assets/ui/menu/paper_strip_2.png" id="3_strip2"]
+[ext_resource type="Texture2D" uid="uid://bct3tcvf2jqwn" path="res://assets/ui/menu/paper_strip_3.png" id="3_strip3"]
+[ext_resource type="Texture2D" uid="uid://dniofhysyk3if" path="res://assets/ui/highlighter/bleu/paper_highlight_1.png" id="4_high1"]
+[ext_resource type="Texture2D" uid="uid://dbin70k5x6dpg" path="res://assets/ui/highlighter/bleu/paper_highlight_2.png" id="4_high2"]
+[ext_resource type="Texture2D" uid="uid://c03tk2f5kb70s" path="res://assets/ui/highlighter/bleu/paper_highlight_3.png" id="4_high3"]
+[ext_resource type="Texture2D" uid="uid://elghy841lbd6" path="res://assets/ui/menu/paper_title.png" id="5_title"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_title"]
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("5_title")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_strip1"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_strip1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_strip1_pressed"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_strip1")
+modulate_color = Color(0.85, 0.85, 0.82, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_high1"]
+texture = ExtResource("4_high1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_strip2"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_strip2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_strip2_pressed"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_strip2")
+modulate_color = Color(0.85, 0.85, 0.82, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_high2"]
+texture = ExtResource("4_high2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_strip3"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_strip3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_strip3_pressed"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_strip3")
+modulate_color = Color(0.85, 0.85, 0.82, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_high3"]
+texture = ExtResource("4_high3")
+
+[node name="MainMenu" type="Control" unique_id=374703924]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ovrgc")
+
+[node name="Background" type="TextureRect" parent="." unique_id=105961706]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kjq2u")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=735398532]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=556765120]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TitlePanel" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=894640704]
+custom_minimum_size = Vector2(1000, 192)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_title")
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer/TitlePanel" unique_id=368125646]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 80
+text = "CramptoGame"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1530636020]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1774857956]
+custom_minimum_size = Vector2(520, 112)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_strip1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_strip1_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_strip1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_strip1_pressed")
+theme_override_styles/focus = SubResource("StyleBoxTexture_high1")
+text = "Jouer"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=633689442]
+custom_minimum_size = Vector2(520, 112)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_strip2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_strip2_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_strip2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_strip2_pressed")
+theme_override_styles/focus = SubResource("StyleBoxTexture_high2")
+text = "Paramètres"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=298696581]
+custom_minimum_size = Vector2(520, 112)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("1_xqga4")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_strip3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_strip3_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_strip3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_strip3_pressed")
+theme_override_styles/focus = SubResource("StyleBoxTexture_high3")
+text = "Quitter"
