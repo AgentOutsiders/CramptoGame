@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Choice" format=3 uid="uid://1ioiv53lhuwm"]
+
+[ext_resource type="Texture2D" uid="uid://dg7gx07jxqg82" path="res://assets/no_image.png" id="1_hj8c8"]
+[ext_resource type="Script" uid="uid://cnthevqoqq2s6" path="res://models/stat_modifier.gd" id="1_vh83r"]
+[ext_resource type="Script" uid="uid://ba41nldfvqasd" path="res://models/choice.gd" id="2_jw31p"]
+[ext_resource type="Resource" uid="uid://dwg1i0m3kmkbg" path="res://data/stat_modifier/test_stat.tres" id="3_gahsc"]
+[ext_resource type="Resource" uid="uid://cft8kmyxiglh" path="res://data/stat_modifier/test_stat2.tres" id="4_pd8nr"]
+[ext_resource type="Resource" uid="uid://cdwqa86kso5w3" path="res://data/stat_modifier/test_stat3.tres" id="5_ql1rm"]
+
+[resource]
+script = ExtResource("2_jw31p")
+_name = "test"
+_description = "je suis en train de tester la description donc je raconte de la merde pour faire du texte"
+_money_impact = -10
+_stats_modifiers = Array[ExtResource("1_vh83r")]([ExtResource("3_gahsc"), ExtResource("4_pd8nr"), ExtResource("5_ql1rm")])
+_image = ExtResource("1_hj8c8")
+metadata/_custom_type_script = "uid://ba41nldfvqasd"

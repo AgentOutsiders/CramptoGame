@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dk7wgsp0f75we"]
 
-[ext_resource type="Script" uid="uid://cfavor3653gsf" path="res://ui/choice_ui.gd" id="1_lpra6"]
-[ext_resource type="Texture2D" uid="uid://dg7gx07jxqg82" path="res://assets/no_image.png" id="2_6oqqk"]
+[ext_resource type="Script" uid="uid://cfavor3653gsf" path="res://ui/event/choice_ui.gd" id="1_uhwml"]
+[ext_resource type="Texture2D" uid="uid://dg7gx07jxqg82" path="res://assets/no_image.png" id="2_roh1e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpra6"]
 bg_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
@@ -26,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_lpra6")
-script = ExtResource("1_lpra6")
+script = ExtResource("1_uhwml")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=724995661]
 layout_mode = 2
@@ -50,7 +50,7 @@ custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_6oqqk")
+texture = ExtResource("2_roh1e")
 
 [node name="CostGainLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=223319694]
 layout_mode = 2

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StatModifier" format=3 uid="uid://dwg1i0m3kmkbg"]
+
+[ext_resource type="Script" uid="uid://cnthevqoqq2s6" path="res://models/stat_modifier.gd" id="1_23eu8"]
+
+[resource]
+script = ExtResource("1_23eu8")
+_flat_bonus = 5
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"

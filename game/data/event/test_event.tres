@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Event" format=3 uid="uid://c6dl2ld8vi1nv"]
+
+[ext_resource type="Script" uid="uid://ba41nldfvqasd" path="res://models/choice.gd" id="1_mc3os"]
+[ext_resource type="Resource" uid="uid://1ioiv53lhuwm" path="res://data/choice/test_choice.tres" id="2_7p3si"]
+[ext_resource type="Script" uid="uid://ffpjpwkus5gh" path="res://models/event.gd" id="2_i4t0o"]
+[ext_resource type="Texture2D" uid="uid://dg7gx07jxqg82" path="res://assets/no_image.png" id="3_7p3si"]
+
+[resource]
+script = ExtResource("2_i4t0o")
+_title = "Le test"
+_description = "Alors ici on parle de merde"
+_image = ExtResource("3_7p3si")
+_choices = Array[ExtResource("1_mc3os")]([ExtResource("2_7p3si")])
+metadata/_custom_type_script = "uid://ffpjpwkus5gh"

@@ -27,9 +27,9 @@ func setup(newChoice : Choice) -> void :
 		cost_gain_label.text = "Coût :"
 	else :
 		cost_gain_label.text = "Gain :"
-	money_label.text = abs(newChoice.get_money_impact())
+	money_label.text = str(abs(newChoice.get_money_impact()))
 	
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		clicked.emit(_choice)
