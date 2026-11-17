@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://bq57t7v3lm71p"]
+
+[ext_resource type="Texture2D" uid="uid://bixewdgwdmvs" path="res://assets/character/character3.png" id="1_04xid"]
+[ext_resource type="Script" uid="uid://d1eoo223wl4qx" path="res://core/data/character_data.gd" id="1_widjj"]
+[ext_resource type="Texture2D" path="res://assets/character/character3_idle.png" id="2_idle"]
+
+[resource]
+script = ExtResource("1_widjj")
+character_name = "Arthur"
+description = "Arthur vit seul dans un appart payé par ses parents. En retour, sa famille attend de lui qu'il réussisse."
+portrait = ExtResource("1_04xid")
+idle_sheet = ExtResource("2_idle")
+scientific = 55
+literature = 60
+methodology = 0.8
+attendance = 0.9
+sleep = 70
+social_life = 60
+hobby = 85
+metadata/_custom_type_script = "uid://d1eoo223wl4qx"

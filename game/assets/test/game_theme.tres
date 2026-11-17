@@ -1,0 +1,16 @@
+[gd_resource type="Theme" format=3 uid="uid://dncjljt60rrui"]
+
+[ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="1_fkp22"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di7cp"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.2285108, 0.22851083, 0.22851068, 1)
+
+[resource]
+default_font = ExtResource("1_fkp22")
+default_font_size = 24
+TooltipLabel/font_sizes/font_size = 24
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_di7cp")

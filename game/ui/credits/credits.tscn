@@ -1,0 +1,131 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://dq3v1q31n23df" path="res://assets/landscape/landscape1.jpg" id="1_bg"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="2_font"]
+[ext_resource type="Script" path="res://ui/credits/credits.gd" id="3_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/settings_title.png" id="4_title"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/settings_page.png" id="4_page"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/settings_back.png" id="4_back"]
+[ext_resource type="Texture2D" path="res://assets/ui/highlighter/bleu/settings_back_highlight.png" id="4_back_hl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_title"]
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("4_title")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_page"]
+content_margin_left = 110.0
+content_margin_top = 42.0
+content_margin_right = 88.0
+content_margin_bottom = 50.0
+texture = ExtResource("4_page")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_back"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_back")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_back_pressed"]
+content_margin_right = 8.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_back")
+modulate_color = Color(0.85, 0.85, 0.82, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_back_hl"]
+texture = ExtResource("4_back_hl")
+
+[node name="Credits" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_script")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TitlePanel" type="PanelContainer" parent="CenterContainer/MainContainer"]
+custom_minimum_size = Vector2(1080, 184)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_title")
+
+[node name="Title" type="Label" parent="CenterContainer/MainContainer/TitlePanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 56
+text = "Crédits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleSpacer" type="Control" parent="CenterContainer/MainContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer/MainContainer"]
+custom_minimum_size = Vector2(1200, 544)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_page")
+
+[node name="Scroller" type="Control" parent="CenterContainer/MainContainer/Panel"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+
+[node name="CreditsList" type="VBoxContainer" parent="CenterContainer/MainContainer/Panel/Scroller"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="BackSpacer" type="Control" parent="CenterContainer/MainContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/MainContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(680, 112)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_focus_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.11, 0.14, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxTexture_back_hl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_back")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_back_pressed")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_back_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_back")
+text = "Retour en arrière"
