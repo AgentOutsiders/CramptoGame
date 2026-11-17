@@ -25,8 +25,8 @@ var _owned_panels: Dictionary = {}
 
 # PackedScene = the Godot type for "a .tscn file loaded in memory, ready to be duplicated (instantiated)"
 # preload to load the scene at compile time and not at runtime
-const ITEM_BUTTON_SCENE: PackedScene = preload("res://ui/item_button.tscn")
-const OWNED_ITEM_SLOT_SCENE: PackedScene = preload("res://ui/owned_item_slot.tscn")
+const ITEM_BUTTON_SCENE: PackedScene = preload("res://ui/shop/item_button.tscn")
+const OWNED_ITEM_SLOT_SCENE: PackedScene = preload("res://ui/shop/owned_item_slot.tscn")
 
 func _ready() -> void:
 	_money_label.text = str(_current_money) + "$"
