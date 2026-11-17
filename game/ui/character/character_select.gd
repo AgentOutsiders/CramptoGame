@@ -133,10 +133,10 @@ func _process(delta: float) -> void:
 
 # Loads the four characters from their .tres files
 func load_characters() -> void:
-	characters.append(load("res://core/data/character1.tres"))
-	characters.append(load("res://core/data/character2.tres"))
-	characters.append(load("res://core/data/character3.tres"))
-	characters.append(load("res://core/data/character4.tres"))
+	characters.append(load("res://data/character/character1.tres"))
+	characters.append(load("res://data/character/character2.tres"))
+	characters.append(load("res://data/character/character3.tres"))
+	characters.append(load("res://data/character/character4.tres"))
 
 
 # Creates one row for each stat: the name, the bar and the value
