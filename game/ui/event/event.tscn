@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://f1hkndokk1ch" path="res://ui/event/event_ui.gd" id="1_lb3et"]
 [ext_resource type="Texture2D" uid="uid://dg7gx07jxqg82" path="res://assets/no_image.png" id="2_o74wx"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gr20t"]
-texture = ExtResource("2_o74wx")
+[ext_resource type="Texture2D" uid="uid://dq3v1q31n23df" path="res://assets/landscape/landscape1.jpg" id="2_s8tq2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pth3o"]
 bg_color = Color(0, 0, 0, 0.33333334)
@@ -66,11 +64,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_gr20t")
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="MainPanelContainer" unique_id=523990091]
 unique_name_in_owner = true
 layout_mode = 2
+texture = ExtResource("2_s8tq2")
 
 [node name="MainVBoxContainer" type="VBoxContainer" parent="MainPanelContainer/BackgroundTextureRect" unique_id=1204196780]
 layout_mode = 0

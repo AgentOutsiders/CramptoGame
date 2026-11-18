@@ -28,8 +28,8 @@ func get_image() -> Texture2D :
 	return _image
 
 func get_stat_description() -> String :
-	var retour : String = ""
-	for stat in _stats_modifiers:
+	var retour : String = "Argent : " + str(_money_impact) + "€\n"
+	for stat : StatModifier in _stats_modifiers:
 		retour += stat.display_text() + "\n"
 	return retour
 		
