@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deay30qx3500c"
-path="res://.godot/imported/purchase_popup_bg.png-81d6a784a3f02767f504dc3568894bb2.ctex"
+uid="uid://blhngslj5othp"
+path="res://.godot/imported/pillow_icon.png-f3a7619ad7a28ab70cbdf5054cae91f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test/purchase_popup_bg.png"
-dest_files=["res://.godot/imported/purchase_popup_bg.png-81d6a784a3f02767f504dc3568894bb2.ctex"]
+source_file="res://assets/item/pillow_icon.png"
+dest_files=["res://.godot/imported/pillow_icon.png-f3a7619ad7a28ab70cbdf5054cae91f7.ctex"]
 
 [params]
 

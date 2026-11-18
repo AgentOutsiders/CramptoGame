@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmr1ythdf6cux"
-path="res://.godot/imported/laptop_icon.png-f2b911c08d16f4297babbb7540cf8b44.ctex"
+uid="uid://b8vvfebi2q03p"
+path="res://.godot/imported/down_arrow.png-16429a27e8110716e8e999f8e8fefc64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test/laptop_icon.png"
-dest_files=["res://.godot/imported/laptop_icon.png-f2b911c08d16f4297babbb7540cf8b44.ctex"]
+source_file="res://assets/ui/shop/down_arrow.png"
+dest_files=["res://.godot/imported/down_arrow.png-16429a27e8110716e8e999f8e8fefc64.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bon36ursbipkg"
-path="res://.godot/imported/car_icon.png-d3d8b5b4a56b93c488d32a5043189342.ctex"
+uid="uid://bvul3h8i7naau"
+path="res://.godot/imported/up_arrow.png-a071ace0ad4c18d19753dc00dcfcd591.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test/car_icon.png"
-dest_files=["res://.godot/imported/car_icon.png-d3d8b5b4a56b93c488d32a5043189342.ctex"]
+source_file="res://assets/ui/shop/up_arrow.png"
+dest_files=["res://.godot/imported/up_arrow.png-a071ace0ad4c18d19753dc00dcfcd591.ctex"]
 
 [params]
 

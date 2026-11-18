@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://dncjljt60rrui"]
 
-[ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="1_fkp22"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="1_fkp22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di7cp"]
 content_margin_left = 15.0

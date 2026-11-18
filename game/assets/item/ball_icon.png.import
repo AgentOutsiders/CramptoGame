@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0m3ugfyspvfb"
-path="res://.godot/imported/ticket_icon.png-3699ec067728557f4d034d8f5222d26f.ctex"
+uid="uid://bs252qx6lkx8y"
+path="res://.godot/imported/ball_icon.png-92c180b0993107d9d5d87691d740ca3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test/ticket_icon.png"
-dest_files=["res://.godot/imported/ticket_icon.png-3699ec067728557f4d034d8f5222d26f.ctex"]
+source_file="res://assets/item/ball_icon.png"
+dest_files=["res://.godot/imported/ball_icon.png-92c180b0993107d9d5d87691d740ca3d.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://rnvpjtdytpdu"]
 
 [ext_resource type="Script" uid="uid://c4nkwpktrjbk7" path="res://ui/shop/item_button.gd" id="1_sm061"]
-[ext_resource type="FontFile" uid="uid://bbelkgf06qk8p" path="res://assets/PixelOperator8.ttf" id="2_3uonw"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="2_3uonw"]
 
 [node name="ItemButton" type="Button" unique_id=1940370657]
 custom_minimum_size = Vector2(350, 360)

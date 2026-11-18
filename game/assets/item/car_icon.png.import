@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blhngslj5othp"
-path="res://.godot/imported/pillow_icon.png-b7661b1a6a9780ab8d1b3a19d1277d68.ctex"
+uid="uid://bon36ursbipkg"
+path="res://.godot/imported/car_icon.png-4d5b29ad045ff52ce7d1ff7d1315aa93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test/pillow_icon.png"
-dest_files=["res://.godot/imported/pillow_icon.png-b7661b1a6a9780ab8d1b3a19d1277d68.ctex"]
+source_file="res://assets/item/car_icon.png"
+dest_files=["res://.godot/imported/car_icon.png-4d5b29ad045ff52ce7d1ff7d1315aa93.ctex"]
 
 [params]
 

@@ -3,10 +3,16 @@ class_name PurchaseConfirmationPopup
 
 signal purchase_confirmed(item: Item, quantity: int)
 
+# number of blinks of the maximum label when the limit is reached, and duration of one way
+const LIMIT_BLINK_COUNT: int = 3
+const LIMIT_BLINK_DURATION: float = 0.15
+
 var _item: Item
 var _quantity: int = 1
 # number of copies that can still be bought (item maximum - copies already owned)
 var _max_quantity: int = 0
+# blinking of the maximum label, kept to stop it if the arrow is pressed again
+var _limit_blink_tween: Tween
 @onready var _title_label: Label = $ContentVBox/TitleLabel
 @onready var _description_label: Label = $ContentVBox/DescriptionLabel
 @onready var _bonuses_label: Label = $ContentVBox/BottomHBox/DetailsVBox/BonusesLabel
@@ -67,10 +73,29 @@ func _on_cancel_pressed() -> void:
 func _on_popup_hide() -> void:
 	# stops the blinking while the popup is closed
 	_stats_informations.clear_preview()
+	_stop_limit_blink()
 
 func _on_up_arrow_pressed() -> void:
-	_quantity = min(_max_quantity, _quantity + 1)
+	if _quantity >= _max_quantity:
+		# already at the limit: the maximum label blinks to show why the quantity does not go up
+		_blink_limit()
+		return
+	_quantity += 1
 	_update_quantity()
+
+# makes the maximum label blink LIMIT_BLINK_COUNT times
+func _blink_limit() -> void:
+	_stop_limit_blink()
+	_limit_blink_tween = create_tween().set_loops(LIMIT_BLINK_COUNT)
+	# modulate:a = opacity of the label, it goes from 1 to 0.2 then back to 1
+	_limit_blink_tween.tween_property(_max_quantity_label, "modulate:a", 0.2, LIMIT_BLINK_DURATION)
+	_limit_blink_tween.tween_property(_max_quantity_label, "modulate:a", 1.0, LIMIT_BLINK_DURATION)
+
+# stops the blinking and makes the label fully visible again
+func _stop_limit_blink() -> void:
+	if _limit_blink_tween:
+		_limit_blink_tween.kill()
+	_max_quantity_label.modulate.a = 1.0
 
 func _on_down_arrow_pressed() -> void:
 	_quantity = max(min(1, _max_quantity), _quantity - 1)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x5mrfka56h61"
-path="res://.godot/imported/claude_icon.png-88a2ff46185c1e574612f35491e04418.ctex"
+uid="uid://0m3ugfyspvfb"
+path="res://.godot/imported/ticket_icon.png-9f8f55adf7b3b2191182bc072cbc5f35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test/claude_icon.png"
-dest_files=["res://.godot/imported/claude_icon.png-88a2ff46185c1e574612f35491e04418.ctex"]
+source_file="res://assets/item/ticket_icon.png"
+dest_files=["res://.godot/imported/ticket_icon.png-9f8f55adf7b3b2191182bc072cbc5f35.ctex"]
 
 [params]
 
