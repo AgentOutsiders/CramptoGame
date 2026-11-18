@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deay30qx3500c"
-path="res://.godot/imported/purchase_popup_bg.png-df10bc23bdc2a45dcaf5873c538d55bd.ctex"
+uid="uid://0m3ugfyspvfb"
+path="res://.godot/imported/ticket_icon.png-489260d8d32aa4e0dc029ab12a6351d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/shop/purchase_popup_bg.png"
-dest_files=["res://.godot/imported/purchase_popup_bg.png-df10bc23bdc2a45dcaf5873c538d55bd.ctex"]
+source_file="res://assets/shop/item/ticket_icon.png"
+dest_files=["res://.godot/imported/ticket_icon.png-489260d8d32aa4e0dc029ab12a6351d2.ctex"]
 
 [params]
 

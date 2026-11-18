@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blhngslj5othp"
-path="res://.godot/imported/pillow_icon.png-f3a7619ad7a28ab70cbdf5054cae91f7.ctex"
+uid="uid://bvul3h8i7naau"
+path="res://.godot/imported/up_arrow.png-5b366a3b4c8667290ffa7dc17933b23a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/item/pillow_icon.png"
-dest_files=["res://.godot/imported/pillow_icon.png-f3a7619ad7a28ab70cbdf5054cae91f7.ctex"]
+source_file="res://assets/shop/ui/up_arrow.png"
+dest_files=["res://.godot/imported/up_arrow.png-5b366a3b4c8667290ffa7dc17933b23a.ctex"]
 
 [params]
 

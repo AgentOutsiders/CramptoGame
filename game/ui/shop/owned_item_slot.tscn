@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://f317vp6wr8dm"]
 
 [ext_resource type="Script" uid="uid://bd4wh4vjkafqg" path="res://ui/shop/owned_item_slot.gd" id="1_epnlt"]
-[ext_resource type="Texture2D" uid="uid://cmr1ythdf6cux" path="res://assets/item/laptop_icon.png" id="2_565jg"]
+[ext_resource type="Texture2D" uid="uid://cmr1ythdf6cux" path="res://assets/shop/item/laptop_icon.png" id="2_565jg"]
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="3_565jg"]
 [ext_resource type="PackedScene" uid="uid://dma1u4yvsvq31" path="res://ui/shop/popups/sell_confirmation_popup.tscn" id="4_y4wd8"]
 

@@ -10,7 +10,7 @@
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="7_qxnrq"]
 [ext_resource type="Resource" uid="uid://dfq4mguq63jhq" path="res://data/item/pillow.tres" id="7_tyvbe"]
 [ext_resource type="Resource" uid="uid://b8q0j77glc6a3" path="res://data/item/movie_ticket.tres" id="8_tdjdk"]
-[ext_resource type="Texture2D" uid="uid://b6ujb4tf3rsac" path="res://assets/ui/shop/shop_bg.png" id="9_773qs"]
+[ext_resource type="Texture2D" uid="uid://b6ujb4tf3rsac" path="res://assets/shop/ui/shop_bg.png" id="9_773qs"]
 [ext_resource type="PackedScene" uid="uid://4h0gs67m0aiv" path="res://ui/informations/informations.tscn" id="11_fovme"]
 
 [node name="Shop" type="Control" unique_id=1128433986]

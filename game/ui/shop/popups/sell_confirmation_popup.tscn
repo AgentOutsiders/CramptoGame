@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b3abi0i478u8f" path="res://ui/shop/popups/sell_confirmation_popup.gd" id="1_srr8h"]
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="2_3dnf7"]
-[ext_resource type="Texture2D" uid="uid://bvul3h8i7naau" path="res://assets/ui/shop/up_arrow.png" id="3_uxxmp"]
-[ext_resource type="Texture2D" uid="uid://b8vvfebi2q03p" path="res://assets/ui/shop/down_arrow.png" id="4_abdc7"]
-[ext_resource type="Texture2D" uid="uid://deay30qx3500c" path="res://assets/ui/shop/purchase_popup_bg.png" id="5_popupbg"]
+[ext_resource type="Texture2D" uid="uid://bvul3h8i7naau" path="res://assets/shop/ui/up_arrow.png" id="3_uxxmp"]
+[ext_resource type="Texture2D" uid="uid://b8vvfebi2q03p" path="res://assets/shop/ui/down_arrow.png" id="4_abdc7"]
+[ext_resource type="Texture2D" uid="uid://deay30qx3500c" path="res://assets/shop/ui/purchase_popup_bg.png" id="5_popupbg"]
 [ext_resource type="PackedScene" uid="uid://4h0gs67m0aiv" path="res://ui/informations/informations.tscn" id="6_infos"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_popupbg"]
