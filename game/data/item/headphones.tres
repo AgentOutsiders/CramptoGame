@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" uid="uid://cnthevqoqq2s6" path="res://models/stat/stat_modifier.gd" id="1_mod"]
+[ext_resource type="Script" uid="uid://cdjt27bxeesjj" path="res://models/item/item.gd" id="2_item"]
+[ext_resource type="Texture2D" path="res://assets/shop/item/headphones_icon.png" id="3_icon"]
+
+[sub_resource type="Resource" id="Resource_method"]
+script = ExtResource("1_mod")
+_stat_type = 2
+_multiplier_bonus = 0.1
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[sub_resource type="Resource" id="Resource_leisure"]
+script = ExtResource("1_mod")
+_stat_type = 6
+_flat_bonus = 4
+metadata/_custom_type_script = "uid://cnthevqoqq2s6"
+
+[resource]
+script = ExtResource("2_item")
+_name = "Casque audio"
+_price = 120.0
+_texture = ExtResource("3_icon")
+_stat_modifiers = Array[ExtResource("1_mod")]([SubResource("Resource_method"), SubResource("Resource_leisure")])
+_description = "Un casque audio."
+_max_owned = 1
+_can_be_used_in_events = true
+metadata/_custom_type_script = "uid://cdjt27bxeesjj"

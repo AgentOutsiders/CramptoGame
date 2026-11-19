@@ -18,6 +18,8 @@ const MUSIC_TRACKS: Array = [
 # Players for the music and the click sound, created in _ready
 var music_player: AudioStreamPlayer
 var click_player: AudioStreamPlayer
+# Player for the cash register sound of the shop
+var cash_player: AudioStreamPlayer
 
 # Music playing right now and current volumes
 var current_track_index: int = 0
@@ -41,6 +43,12 @@ func _ready() -> void:
 	click_player.bus = "SFX"
 	add_child(click_player)
 
+	# We create the player for the cash register sound, also on the SFX bus
+	cash_player = AudioStreamPlayer.new()
+	cash_player.stream = load("res://assets/sounds/cashRegister.mp3")
+	cash_player.bus = "SFX"
+	add_child(cash_player)
+
 	# We set the default volumes and start the first music
 	set_sfx_volume(DEFAULT_SFX)
 	set_music_volume(DEFAULT_MUSIC)
@@ -50,6 +58,11 @@ func _ready() -> void:
 # Plays the click sound when a button is pressed
 func play_click() -> void:
 	click_player.play()
+
+
+# Plays the cash register sound when something is bought or sold in the shop
+func play_cash() -> void:
+	cash_player.play()
 
 
 # Plays the music number index from the MUSIC_TRACKS list

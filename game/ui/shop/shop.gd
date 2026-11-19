@@ -13,14 +13,20 @@ signal item_sold(item: Item, quantity: int)
 var _owned_items: Dictionary = {}
 # Item -> OwnedItemSlot
 var _owned_panels: Dictionary = {}
+# Money shown on screen, it moves step by step towards _current_money during the animation
+var _displayed_money: int = 0
+var _money_tween: Tween
+var _money_change_tween: Tween
 
 @onready var _shop_items_grid: GridContainer = $ShopItemsMargin/ShopItemsScroll/ShopItemsGrid
 @onready var _purchase_confirmation_popup: PopupPanel = $PurchaseConfirmationPopup
 @onready var _notification_timer: Timer = $NotificationTimer
 @onready var _notification_label: Label = $NotificationMargin/NotificationLabel
-@onready var _money_label: Label = $MoneyMargin/MoneyLabel
-@onready var _owned_items_grid: GridContainer = $OwnedItemsMargin/OwnedItemsScroll/OwnedItemsGrid
-@onready var _stats_informations: Informations = $StatsMargin/StatsInformations
+@onready var _money_label: Label = $MoneyPanel/MoneyGrid/MoneyLabel
+@onready var _money_sign_label: Label = $MoneyPanel/MoneyGrid/MoneySignLabel
+@onready var _money_change_label: Label = $MoneyPanel/MoneyGrid/MoneyChangeLabel
+@onready var _owned_items_grid: GridContainer = $OwnedItemsMargin/OwnedItemsPanel/OwnedItemsVBox/OwnedItemsScroll/OwnedItemsGrid
+@onready var _stats_informations: Informations = $StatsMargin/StatsPanel/StatsInformations
 
 
 # PackedScene = the Godot type for "a .tscn file loaded in memory, ready to be duplicated (instantiated)"
@@ -29,7 +35,7 @@ const ITEM_BUTTON_SCENE: PackedScene = preload("res://ui/shop/item_button.tscn")
 const OWNED_ITEM_SLOT_SCENE: PackedScene = preload("res://ui/shop/owned_item_slot.tscn")
 
 func _ready() -> void:
-	_money_label.text = str(_current_money) + "$"
+	_set_displayed_money(_current_money)
 	for item in _available_items:
 		var button: ItemButton = ITEM_BUTTON_SCENE.instantiate()
 		_shop_items_grid.add_child(button)
@@ -48,7 +54,10 @@ func _ready() -> void:
 # stats: StatType.Type -> value (gauges and multipliers)
 func setup(money: int, owned_items: Dictionary, stats: Dictionary) -> void:
 	_current_money = money
-	_money_label.text = str(_current_money) + "$"
+	# Stop the old animation so it does not write over the new money
+	if _money_tween:
+		_money_tween.kill()
+	_set_displayed_money(_current_money)
 
 	# remove the slots of the old inventory before showing the new one
 	for item in _owned_panels:
@@ -87,8 +96,8 @@ func _on_purchase_confirmed(item: Item, quantity: int) -> void:
 	if added_quantity == 0:
 		return
 
-	_current_money -= added_quantity * int(item.get_price())
-	_money_label.text = str(_current_money) + "$"
+	_change_money(-added_quantity * int(item.get_price()))
+	AudioManager.play_cash()
 
 	# each copy actually bought applies its bonus to the matching gauge
 	for modifier in item.get_stat_modifiers():
@@ -135,8 +144,8 @@ func _on_owned_slot_clicked(item: Item) -> void:
 
 func _on_sell_confirmed(item: Item, quantity: int) -> void:
 	# a sold item only gives back part of its price (see Item.get_sell_price())
-	_current_money += quantity * int(item.get_sell_price())
-	_money_label.text = str(_current_money) + "$"
+	_change_money(quantity * int(item.get_sell_price()))
+	AudioManager.play_cash()
 	_notification_label.add_theme_color_override("font_color", Color(0.01, 0.82, 0.0, 1.0))
 	_show_notification("Vente effectuée !")
 
@@ -156,6 +165,60 @@ func _on_sell_confirmed(item: Item, quantity: int) -> void:
 
 	# notify the player that they sold an item
 	item_sold.emit(item, quantity)
+
+# Adds or removes money and plays the animation under the money
+func _change_money(amount: int) -> void:
+	_current_money += amount
+
+	# The money counts up or down to the new value
+	if _money_tween:
+		_money_tween.kill()
+	_money_tween = create_tween()
+	_money_tween.tween_method(_set_displayed_money, float(_displayed_money), float(_current_money), 0.6)
+
+	# The sign is in its own column so the digits stay under the money
+	# The gain is shown in green and the loss in red
+	var color: Color
+	if amount >= 0:
+		_money_sign_label.text = "+"
+		color = Color(0.2, 0.85, 0.2, 1.0)
+	else:
+		_money_sign_label.text = "-"
+		color = Color(0.95, 0.2, 0.2, 1.0)
+	_money_change_label.text = _format_money(abs(amount))
+	_money_sign_label.add_theme_color_override("font_color", color)
+	_money_change_label.add_theme_color_override("font_color", color)
+
+	# The sign and the gain or loss appear together, stay a moment, then fade out
+	if _money_change_tween:
+		_money_change_tween.kill()
+	_money_sign_label.modulate.a = 0.0
+	_money_change_label.modulate.a = 0.0
+	_money_change_tween = create_tween()
+	_money_change_tween.tween_property(_money_sign_label, "modulate:a", 1.0, 0.2)
+	_money_change_tween.parallel().tween_property(_money_change_label, "modulate:a", 1.0, 0.2)
+	_money_change_tween.tween_interval(1.5)
+	_money_change_tween.tween_property(_money_sign_label, "modulate:a", 0.0, 0.6)
+	_money_change_tween.parallel().tween_property(_money_change_label, "modulate:a", 0.0, 0.6)
+
+# Writes the money in the label, called at each step of the animation
+func _set_displayed_money(value: float) -> void:
+	_displayed_money = int(round(value))
+	_money_label.text = _format_money(_displayed_money)
+
+# Puts a space every 3 digits to read it easily, like 100 000 $
+func _format_money(value: int) -> String:
+	var digits: String = str(abs(value))
+	var formatted: String = ""
+	var count: int = 0
+	for i in range(digits.length() - 1, -1, -1):
+		if count > 0 and count % 3 == 0:
+			formatted = " " + formatted
+		formatted = digits[i] + formatted
+		count += 1
+	if value < 0:
+		formatted = "-" + formatted
+	return formatted + " $"
 
 func _show_notification(message : String) -> void:
 	_notification_label.text = message

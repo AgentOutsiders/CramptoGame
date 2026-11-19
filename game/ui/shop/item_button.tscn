@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="2_3uonw"]
 
 [node name="ItemButton" type="Button" unique_id=1940370657]
-custom_minimum_size = Vector2(350, 360)
+custom_minimum_size = Vector2(360, 390)
 script = ExtResource("1_sm061")
 
 [node name="ContentVBox" type="VBoxContainer" parent="." unique_id=1513457712]
@@ -12,6 +12,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 30
@@ -23,10 +24,19 @@ layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="NamePriceLabel" type="Label" parent="ContentVBox" unique_id=266343498]
+[node name="TextVBox" type="VBoxContainer" parent="ContentVBox" unique_id=266343499]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="NameLabel" type="Label" parent="ContentVBox/TextVBox" unique_id=266343498]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3uonw")
 theme_override_font_sizes/font_size = 28
-text = "s"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="PriceLabel" type="Label" parent="ContentVBox/TextVBox" unique_id=266343500]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3uonw")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1

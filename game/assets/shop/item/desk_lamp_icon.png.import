@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8vvfebi2q03p"
-path="res://.godot/imported/down_arrow.png-43c0e361f836e8b0de4bec839d2b2468.ctex"
+uid="uid://pa5icq02so88"
+path="res://.godot/imported/desk_lamp_icon.png-7182629972f5c6f61ecc580a83c4cf49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/shop/ui/down_arrow.png"
-dest_files=["res://.godot/imported/down_arrow.png-43c0e361f836e8b0de4bec839d2b2468.ctex"]
+source_file="res://assets/shop/item/desk_lamp_icon.png"
+dest_files=["res://.godot/imported/desk_lamp_icon.png-7182629972f5c6f61ecc580a83c4cf49.ctex"]
 
 [params]
 

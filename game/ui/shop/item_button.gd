@@ -7,14 +7,17 @@ signal item_selected(item : Item)
 var _item : Item
 
 @onready var _icon_texture_rect: TextureRect = $ContentVBox/IconTextureRect
-@onready var _name_price_label: Label = $ContentVBox/NamePriceLabel
+@onready var _name_label: Label = $ContentVBox/TextVBox/NameLabel
+@onready var _price_label: Label = $ContentVBox/TextVBox/PriceLabel
 
 # public function so no _ (used by the shop)
 func setup(item : Item) -> void:
 	_item = item
-	# works like a printf, e.g. (laptop - 100 $)
+	# The name on the first line and the price on the line below
+	_name_label.text = item.get_item_name()
+	# works like a printf, e.g. 100 $
 	# .0f = float with 0 digits after the decimal point
-	_name_price_label.text = "%s - %.0f $" % [item.get_item_name(), item.get_price()]
+	_price_label.text = "%.0f $" % item.get_price()
 	_icon_texture_rect.texture = item.get_texture()
 	
 

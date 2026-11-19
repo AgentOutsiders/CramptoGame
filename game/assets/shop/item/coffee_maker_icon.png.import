@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deay30qx3500c"
-path="res://.godot/imported/purchase_popup_bg.png-ab245fbf5f56b9e8c33989bfbf809e4c.ctex"
+uid="uid://fd7kr6sumv4p"
+path="res://.godot/imported/coffee_maker_icon.png-4306b42a98fa53f5202bd49ac273b239.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/shop/ui/purchase_popup_bg.png"
-dest_files=["res://.godot/imported/purchase_popup_bg.png-ab245fbf5f56b9e8c33989bfbf809e4c.ctex"]
+source_file="res://assets/shop/item/coffee_maker_icon.png"
+dest_files=["res://.godot/imported/coffee_maker_icon.png-4306b42a98fa53f5202bd49ac273b239.ctex"]
 
 [params]
 

@@ -2,178 +2,274 @@
 
 [ext_resource type="Script" uid="uid://b3abi0i478u8f" path="res://ui/shop/popups/sell_confirmation_popup.gd" id="1_srr8h"]
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/font/PixelOperator8.ttf" id="2_3dnf7"]
-[ext_resource type="Texture2D" uid="uid://bvul3h8i7naau" path="res://assets/shop/ui/up_arrow.png" id="3_uxxmp"]
-[ext_resource type="Texture2D" uid="uid://b8vvfebi2q03p" path="res://assets/shop/ui/down_arrow.png" id="4_abdc7"]
-[ext_resource type="Texture2D" uid="uid://deay30qx3500c" path="res://assets/shop/ui/purchase_popup_bg.png" id="5_popupbg"]
 [ext_resource type="PackedScene" uid="uid://4h0gs67m0aiv" path="res://ui/informations/informations.tscn" id="6_infos"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_popupbg"]
-content_margin_left = 233.0
-content_margin_top = 67.0
-content_margin_right = 83.0
-content_margin_bottom = 83.0
-texture = ExtResource("5_popupbg")
-
-[sub_resource type="Theme" id="Theme_popuptext"]
-Label/colors/font_color = Color(0.2, 0.15, 0.1, 1)
-
-[sub_resource type="Theme" id="Theme_statspanel"]
-Label/colors/font_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_statspanel"]
-content_margin_left = 15.0
-content_margin_top = 20.0
-content_margin_right = 15.0
-content_margin_bottom = 20.0
-bg_color = Color(0, 0, 0, 0.75)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
+content_margin_left = 32.0
+content_margin_top = 28.0
+content_margin_right = 32.0
+content_margin_bottom = 28.0
+bg_color = Color(0.12, 0.13, 0.16, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.6)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="Theme" id="Theme_popuptext"]
+default_font = ExtResource("2_3dnf7")
+default_font_size = 28
+Label/colors/font_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_separator"]
+color = Color(1, 1, 1, 0.25)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_statspanel"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 0.35)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_small_normal"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(1, 1, 1, 0.12)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.5)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_small_hover"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(1, 1, 1, 0.25)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_small_disabled"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(1, 1, 1, 0.04)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.15)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sell_normal"]
+bg_color = Color(0.7, 0.2, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.45, 0.45, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sell_hover"]
+bg_color = Color(0.82, 0.26, 0.26, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.65, 0.65, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sell_disabled"]
+bg_color = Color(0.3, 0.25, 0.25, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.35, 0.35, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cancel_normal"]
+bg_color = Color(1, 1, 1, 0.08)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.5)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cancel_hover"]
+bg_color = Color(1, 1, 1, 0.2)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="SellConfirmationPopup" type="PopupPanel" unique_id=1686505149]
 oversampling_override = 1.0
-size = Vector2i(1500, 1000)
-visible = true
-theme_override_styles/panel = SubResource("StyleBoxTexture_popupbg")
+size = Vector2i(900, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
 script = ExtResource("1_srr8h")
 
 [node name="ContentVBox" type="VBoxContainer" parent="." unique_id=296544769]
-offset_left = 233.0
-offset_top = 67.0
-offset_right = 1417.0
-offset_bottom = 917.0
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 868.0
+offset_bottom = 932.0
 theme = SubResource("Theme_popuptext")
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 
-[node name="TopSpacerControl" type="Control" parent="ContentVBox" unique_id=1418865093]
+[node name="HeaderHBox" type="HBoxContainer" parent="ContentVBox" unique_id=1327505412]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/separation = 24
+alignment = 1
 
-[node name="TitleLabel" type="Label" parent="ContentVBox" unique_id=1327505411]
+[node name="IconTextureRect" type="TextureRect" parent="ContentVBox/HeaderHBox" unique_id=1327505413]
+custom_minimum_size = Vector2(96, 64)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.6313726, 0.31764707, 0.101960786, 1)
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 48
-horizontal_alignment = 1
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="ContentVBox/HeaderHBox" unique_id=1327505411]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+vertical_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="ContentVBox" unique_id=1963724681]
-custom_minimum_size = Vector2(1100, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.66665715, 0.32319716, 0.5058116, 1)
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0.2, 1)
+theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="MiddleSpacerControl" type="Control" parent="ContentVBox" unique_id=1730562284]
-custom_minimum_size = Vector2(0, 10)
+[node name="TopSeparator" type="HSeparator" parent="ContentVBox" unique_id=1730562284]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_separator")
 
-[node name="BottomHBox" type="HBoxContainer" parent="ContentVBox" unique_id=1093847261]
+[node name="StatsPanel" type="PanelContainer" parent="ContentVBox" unique_id=1367720985]
 layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="DetailsVBox" type="VBoxContainer" parent="ContentVBox/BottomHBox" unique_id=884213570]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 20
-
-[node name="BonusesTitleLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1720094418]
-custom_minimum_size = Vector2(340, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.6313726, 0.31764707, 0.101960786, 1)
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
-text = "Ce que cet objet apporte :"
-autowrap_mode = 3
-
-[node name="BonusesLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1556207734]
-custom_minimum_size = Vector2(340, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
-autowrap_mode = 3
-
-[node name="OwnedAmountLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1286023417]
-custom_minimum_size = Vector2(340, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.3325664, 0.57784474, 0.19780755, 1)
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
-autowrap_mode = 3
-
-[node name="SpacerControl" type="Control" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=640581927]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="QuantityHBox" type="HBoxContainer" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=1177982356]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 20
-
-[node name="QuantityTitleLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox" unique_id=1904436125]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
-text = "Quantité :"
-vertical_alignment = 1
-
-[node name="QuantityLabel" type="Label" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox" unique_id=820850732]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
-text = "1"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="ArrowsVBox" type="VBoxContainer" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox" unique_id=1481841949]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="UpArrowButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox" unique_id=1059017159]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 2
-icon = ExtResource("3_uxxmp")
-expand_icon = true
-
-[node name="DownArrowButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/QuantityHBox/ArrowsVBox" unique_id=339619138]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 2
-icon = ExtResource("4_abdc7")
-expand_icon = true
-
-[node name="ActionsHBox" type="HBoxContainer" parent="ContentVBox/BottomHBox/DetailsVBox" unique_id=312660369]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 10
-
-[node name="CancelButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/ActionsHBox" unique_id=1489820492]
-custom_minimum_size = Vector2(160, 60)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
-text = "Annuler"
-
-[node name="SellButton" type="Button" parent="ContentVBox/BottomHBox/DetailsVBox/ActionsHBox" unique_id=1445378448]
-custom_minimum_size = Vector2(160, 60)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_3dnf7")
-theme_override_font_sizes/font_size = 28
-text = "Vendre"
-
-[node name="StatsPanel" type="PanelContainer" parent="ContentVBox/BottomHBox" unique_id=1367720985]
-layout_mode = 2
-theme = SubResource("Theme_statspanel")
 theme_override_styles/panel = SubResource("StyleBoxFlat_statspanel")
 
-[node name="StatsInformations" parent="ContentVBox/BottomHBox/StatsPanel" unique_id=571832209 instance=ExtResource("6_infos")]
+[node name="StatsInformations" parent="ContentVBox/StatsPanel" unique_id=571832209 instance=ExtResource("6_infos")]
 layout_mode = 2
+size_flags_horizontal = 4
 _percent_label_min_width = 200.0
 _multiplier_label_min_width = 284.0
 
-[node name="BottomSpacerControl" type="Control" parent="ContentVBox" unique_id=1592047716]
+[node name="BottomSeparator" type="HSeparator" parent="ContentVBox" unique_id=1093847261]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_separator")
+
+[node name="OwnedLabel" type="Label" parent="ContentVBox" unique_id=1286023417]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.75)
+theme_override_font_sizes/font_size = 24
+
+[node name="QuantityHBox" type="HBoxContainer" parent="ContentVBox" unique_id=1177982356]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="QuantityTitleLabel" type="Label" parent="ContentVBox/QuantityHBox" unique_id=1904436125]
+layout_mode = 2
+text = "Quantité"
+vertical_alignment = 1
+
+[node name="MinusButton" type="Button" parent="ContentVBox/QuantityHBox" unique_id=339619138]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_small_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_small_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_small_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_small_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_small_hover")
+text = "-"
+
+[node name="QuantityLabel" type="Label" parent="ContentVBox/QuantityHBox" unique_id=820850732]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusButton" type="Button" parent="ContentVBox/QuantityHBox" unique_id=1059017159]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_small_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_small_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_small_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_small_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_small_hover")
+text = "+"
+
+[node name="TotalLabel" type="Label" parent="ContentVBox/QuantityHBox" unique_id=1556207734]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ActionsSpacer" type="Control" parent="ContentVBox" unique_id=312660370]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="ActionsHBox" type="HBoxContainer" parent="ContentVBox" unique_id=312660369]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
+
+[node name="CancelButton" type="Button" parent="ContentVBox/ActionsHBox" unique_id=1489820492]
+custom_minimum_size = Vector2(220, 64)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_cancel_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cancel_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cancel_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cancel_hover")
+text = "Annuler"
+
+[node name="SellButton" type="Button" parent="ContentVBox/ActionsHBox" unique_id=1445378448]
+custom_minimum_size = Vector2(220, 64)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sell_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sell_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sell_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_sell_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sell_hover")
+text = "Vendre"

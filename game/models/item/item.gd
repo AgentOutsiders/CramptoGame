@@ -11,7 +11,7 @@ class_name Item
 # true if the item can be useful during some game events
 @export var _can_be_used_in_events : bool = false
 
-const EVENT_DESCRIPTION: String = "Cet item pourra vous être utile lors de certains évènements..."
+const EVENT_DESCRIPTION: String = "Cet item pourra vous être utile\nlors de certains évènements !"
 # a sold item gives back 65% of its purchase price
 const SELL_PRICE_RATIO: float = 0.65
 

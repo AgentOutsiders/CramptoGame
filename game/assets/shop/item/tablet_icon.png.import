@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b272q074513gx"
-path="res://.godot/imported/paper_strip_4.png-3c38ed473290004664466f54285105c1.ctex"
+uid="uid://das8rcw0nw0yu"
+path="res://.godot/imported/tablet_icon.png-4637212cac63835986ced0ad012de1c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/menu/paper_strip_4.png"
-dest_files=["res://.godot/imported/paper_strip_4.png-3c38ed473290004664466f54285105c1.ctex"]
+source_file="res://assets/shop/item/tablet_icon.png"
+dest_files=["res://.godot/imported/tablet_icon.png-4637212cac63835986ced0ad012de1c8.ctex"]
 
 [params]
 

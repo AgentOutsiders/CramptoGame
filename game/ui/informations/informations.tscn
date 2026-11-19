@@ -38,10 +38,14 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_sections"]
+color = Color(1, 1, 1, 0.35)
+thickness = 2
+
 [node name="Informations" type="VBoxContainer" unique_id=1846551046]
 offset_right = 723.0
 offset_bottom = 556.0
-theme_override_constants/separation = 40
+theme_override_constants/separation = 28
 script = ExtResource("1_kmeeq")
 
 [node name="StatsVBox" type="VBoxContainer" parent="." unique_id=268876827]
@@ -148,6 +152,10 @@ theme_override_colors/font_color = Color(0.95, 0.75, 0.15, 1)
 theme_override_fonts/font = ExtResource("2_eudpk")
 theme_override_font_sizes/font_size = 28
 text = "0%"
+
+[node name="SectionsSeparator" type="HSeparator" parent="." unique_id=1734813053]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_sections")
 
 [node name="MultipliersVBox" type="VBoxContainer" parent="." unique_id=1734813052]
 layout_mode = 2
