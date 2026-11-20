@@ -2,19 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://46vd7qqo58ik" path="res://assets/character/character2.png" id="1_jjiib"]
 [ext_resource type="Script" uid="uid://d1eoo223wl4qx" path="res://data/character/character_data.gd" id="1_wrnr4"]
-[ext_resource type="Texture2D" path="res://assets/character/character2_idle.png" id="2_idle"]
+[ext_resource type="Texture2D" uid="uid://e3ew6ggwwt83" path="res://assets/character/character2_idle.png" id="2_idle"]
 
 [resource]
 script = ExtResource("1_wrnr4")
 character_name = "Noa"
-description = "Noa vit en colocation, avec un peu d'aide de ses parents. Tout va bien, tant qu'il n'y a pas d'imprévu."
 portrait = ExtResource("1_jjiib")
 idle_sheet = ExtResource("2_idle")
+description = "Noa vit en colocation, avec un peu d'aide de ses parents. Tout va bien, tant qu'il n'y a pas d'imprévu."
 scientific = 50
 literature = 50
-methodology = 1.0
-attendance = 1.0
-sleep = 60
+sleep = 1.2
 social_life = 65
 hobby = 55
 metadata/_custom_type_script = "uid://d1eoo223wl4qx"

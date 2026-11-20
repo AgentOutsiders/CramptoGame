@@ -25,7 +25,7 @@ const STATS: Array = [
 	{"property": "literature", "label": "Littérature", "color": Color("ff851b"), "multiplier": false},
 	{"property": "methodology", "label": "Méthodologie", "color": Color("0074d9"), "multiplier": true},
 	{"property": "attendance", "label": "Assiduité", "color": Color("2ecc40"), "multiplier": true},
-	{"property": "sleep", "label": "Sommeil", "color": Color("b10dc9"), "multiplier": false},
+	{"property": "sleep", "label": "Sommeil", "color": Color("b10dc9"), "multiplier": true},
 	{"property": "social_life", "label": "Vie sociale", "color": Color("ffdc00"), "multiplier": false},
 	{"property": "hobby", "label": "Hobby", "color": Color("39cccc"), "multiplier": false},
 ]
@@ -374,6 +374,5 @@ func _on_back_pressed() -> void:
 # Saves the chosen character in GameManager
 func _on_confirm_pressed() -> void:
 	AudioManager.play_click()
-
-	# The game scene will read the chosen character in GameManager
-	GameManager.selected_character = selected_character
+	if selected_character != null:
+		GameManager.start_new_run(selected_character, GameManager.selected_mode)

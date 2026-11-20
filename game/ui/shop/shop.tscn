@@ -12,14 +12,14 @@
 [ext_resource type="Resource" uid="uid://b8q0j77glc6a3" path="res://data/item/movie_ticket.tres" id="8_tdjdk"]
 [ext_resource type="Texture2D" uid="uid://b6ujb4tf3rsac" path="res://assets/shop/ui/shop_bg.png" id="9_773qs"]
 [ext_resource type="PackedScene" uid="uid://4h0gs67m0aiv" path="res://ui/informations/informations.tscn" id="11_fovme"]
-[ext_resource type="Resource" path="res://data/item/book.tres" id="12_book"]
-[ext_resource type="Resource" path="res://data/item/coffee_maker.tres" id="13_coffee"]
-[ext_resource type="Resource" path="res://data/item/headphones.tres" id="14_headphones"]
-[ext_resource type="Resource" path="res://data/item/calculator.tres" id="15_calculator"]
-[ext_resource type="Resource" path="res://data/item/highlighter.tres" id="17_highlighter"]
-[ext_resource type="Resource" path="res://data/item/desk_lamp.tres" id="18_desk_lamp"]
-[ext_resource type="Resource" path="res://data/item/alarm_clock.tres" id="19_alarm_clock"]
-[ext_resource type="Resource" path="res://data/item/tablet.tres" id="20_tablet"]
+[ext_resource type="Resource" uid="uid://b2pxia1utqs25" path="res://data/item/book.tres" id="12_book"]
+[ext_resource type="Resource" uid="uid://0jh1q6y8lcke" path="res://data/item/coffee_maker.tres" id="13_coffee"]
+[ext_resource type="Resource" uid="uid://c7vkvgur15lqu" path="res://data/item/headphones.tres" id="14_headphones"]
+[ext_resource type="Resource" uid="uid://d34wos7jow1yc" path="res://data/item/calculator.tres" id="15_calculator"]
+[ext_resource type="Resource" uid="uid://bsfchakn7epum" path="res://data/item/highlighter.tres" id="17_highlighter"]
+[ext_resource type="Resource" uid="uid://hb6e2mkx8hl" path="res://data/item/desk_lamp.tres" id="18_desk_lamp"]
+[ext_resource type="Resource" uid="uid://b0ave68g7atx8" path="res://data/item/alarm_clock.tres" id="19_alarm_clock"]
+[ext_resource type="Resource" uid="uid://cv305bh4wtcqo" path="res://data/item/tablet.tres" id="20_tablet"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_money"]
 content_margin_left = 20.0
@@ -231,3 +231,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_stats")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="." unique_id=1537023608]
+layout_mode = 0
+offset_right = 424.0
+offset_bottom = 114.0
+text = "retour"
+
+[connection signal="pressed" from="Button" to="." method="back_on_button_pressed"]

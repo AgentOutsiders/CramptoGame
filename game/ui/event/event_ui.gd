@@ -20,6 +20,8 @@ class_name EventUI
 #Variable modifiable depuis l'inspecteur
 @export var no_image: Texture2D		#c'est pour quand le choix n'a pas d'objet prérequis 
 
+var selected_choice: Choice = null
+
 #Constante qui contient la scène choice
 const CHOICE_SCENE: PackedScene = preload("res://ui/event/choice.tscn")
 
@@ -37,6 +39,7 @@ func setup(event : Event) -> void :
 
 #Fonction connecté au signal clicked des choices qui permet de faire apparaitre la fenêtre full info choice avec les bonnes info évidement
 func full_info_choice_setup(choice : Choice) -> void :
+	selected_choice = choice
 	full_info_choice_label.text = choice.get_choice_name()
 	full_info_choice_texture_rect.texture = choice.get_image()
 	full_info_description_rich_text_label.text = choice.get_description()
@@ -55,8 +58,37 @@ func _on_cancel_button_pressed() -> void:
 
 
 func _on_confir_button_pressed() -> void:
-	pass # Ajouter la vadilation du choix puis passer à la suite du jeu
+	if selected_choice == null:
+		return
+
+	var required_item: Item = selected_choice.get_required_item()
+	if required_item != null and int(GameManager.inventory.get(required_item, 0)) <= 0:
+		full_info_description_rich_text_label.text = "Objet requis manquant : " + required_item.get_item_name()
+		return
+
+	GameManager.apply_money_change(selected_choice.get_money_impact())
+	for modifier: StatModifier in selected_choice.get_stat_modifiers():
+		GameManager.apply_stat_modifier(modifier)
+
+	if not GameManager.is_game_over:
+		GameManager.advance_after_event()
 
 #test temporaire à retirer pour la version final
 func _ready() -> void:
-	setup(preload("uid://c6dl2ld8vi1nv"))
+	if not GameManager.is_game_over:
+		var event_resources: Array[Event] = []
+		var event_directory: DirAccess = DirAccess.open("res://data/event")
+		if event_directory != null:
+			event_directory.list_dir_begin()
+			var file_name: String = event_directory.get_next()
+			while file_name != "":
+				if not event_directory.current_is_dir() and file_name.ends_with(".tres"):
+					var event_resource: Resource = load("res://data/event/" + file_name)
+					if event_resource is Event:
+						event_resources.append(event_resource)
+				file_name = event_directory.get_next()
+			event_directory.list_dir_end()
+
+		if event_resources.size() > 0:
+			event_resources.shuffle()
+			setup(event_resources[0])

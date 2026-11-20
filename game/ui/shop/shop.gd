@@ -33,20 +33,30 @@ var _money_change_tween: Tween
 # preload to load the scene at compile time and not at runtime
 const ITEM_BUTTON_SCENE: PackedScene = preload("res://ui/shop/item_button.tscn")
 const OWNED_ITEM_SLOT_SCENE: PackedScene = preload("res://ui/shop/owned_item_slot.tscn")
+const WEEKEND_PATH: String = "res://ui/weekend/weekend.tscn"
 
 func _ready() -> void:
-	_set_displayed_money(_current_money)
-	for item in _available_items:
+	setup(GameManager.money, GameManager.inventory, GameManager.stats)
+
+	for item in GameManager.current_shop_items:
 		var button: ItemButton = ITEM_BUTTON_SCENE.instantiate()
 		_shop_items_grid.add_child(button)
 		# calls setup() in item_button.gd, which fills the button with an item and a text
 		button.setup(item)
 		# when the button's signal is fired = connected to _on_item_selected()
 		button.item_selected.connect(_on_item_selected)
-		
-		
+
 	_purchase_confirmation_popup.purchase_confirmed.connect(_on_purchase_confirmed)
 	_notification_timer.timeout.connect(_on_notification_timeout)
+	item_purchased.connect(_on_item_purchased)
+	item_sold.connect(_on_item_sold)
+
+	var back_button: Button = Button.new()
+	back_button.text = "Retour au week-end"
+	back_button.position = Vector2(1232, 1040)
+	back_button.size = Vector2(668, 40)
+	back_button.pressed.connect(_on_back_pressed)
+	add_child(back_button)
 
 # Gives the player's data to the shop, to call when the shop opens.
 # money: the player's money
@@ -90,13 +100,20 @@ func _on_purchase_confirmed(item: Item, quantity: int) -> void:
 		_notification_label.add_theme_color_override("font_color", Color(0.962, 0.0, 0.0, 1.0))
 		_show_notification("Pas assez d'argent !")
 		return
-	
-	# if so, check what will really be charged according to the item's ownership limit
-	var added_quantity: int = _add_owned_item(item, quantity)
+
+	var current_amount: int = _owned_items.get(item, 0)
+	if not GameManager.buy_item(item, quantity):
+		_notification_label.add_theme_color_override("font_color", Color(0.962, 0.0, 0.0, 1.0))
+		_show_notification("Impossible d'en avoir plus !")
+		return
+
+	var added_quantity: int = int(GameManager.inventory.get(item, 0)) - current_amount
 	if added_quantity == 0:
 		return
 
-	_change_money(-added_quantity * int(item.get_price()))
+	_add_owned_item(item, added_quantity)
+	_current_money = GameManager.money
+	_change_money_to_global()
 	AudioManager.play_cash()
 
 	# each copy actually bought applies its bonus to the matching gauge
@@ -144,7 +161,9 @@ func _on_owned_slot_clicked(item: Item) -> void:
 
 func _on_sell_confirmed(item: Item, quantity: int) -> void:
 	# a sold item only gives back part of its price (see Item.get_sell_price())
-	_change_money(quantity * int(item.get_sell_price()))
+	GameManager.sell_item(item, quantity)
+	_current_money = GameManager.money
+	_change_money_to_global()
 	AudioManager.play_cash()
 	_notification_label.add_theme_color_override("font_color", Color(0.01, 0.82, 0.0, 1.0))
 	_show_notification("Vente effectuée !")
@@ -165,6 +184,24 @@ func _on_sell_confirmed(item: Item, quantity: int) -> void:
 
 	# notify the player that they sold an item
 	item_sold.emit(item, quantity)
+
+func _on_item_purchased(item: Item, quantity: int) -> void:
+	for copy_index in range(quantity):
+		pass
+
+func _on_item_sold(item: Item, quantity: int) -> void:
+	pass
+
+func _change_money_to_global() -> void:
+	if _money_tween:
+		_money_tween.kill()
+	_money_tween = create_tween()
+	_money_tween.tween_method(_set_displayed_money, float(_displayed_money), float(_current_money), 0.6)
+
+func _on_back_pressed() -> void:
+	GameManager.money = _current_money
+	GameManager.inventory = get_owned_items()
+	get_tree().change_scene_to_file(WEEKEND_PATH)
 
 # Adds or removes money and plays the animation under the money
 func _change_money(amount: int) -> void:
@@ -227,3 +264,8 @@ func _show_notification(message : String) -> void:
 	
 func _on_notification_timeout() -> void:
 	_notification_label.visible = false
+
+
+
+func back_on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://ui/weekend/weekend.tscn")

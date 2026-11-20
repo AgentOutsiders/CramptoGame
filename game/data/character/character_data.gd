@@ -22,8 +22,8 @@ class_name CharacterData
 # Multipliers between 0.5 and 2
 @export_range(0.5, 2.0, 0.02) var methodology: float = 1.0
 @export_range(0.5, 2.0, 0.02) var attendance: float = 1.0
+@export_range(0.5, 2.0, 0.02) var sleep: float = 1.0
 
 # Stats between 0 and 100
-@export var sleep: int = 0
 @export var social_life: int = 0
 @export var hobby: int = 0
